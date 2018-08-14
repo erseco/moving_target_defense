@@ -105,3 +105,28 @@ venv.bak/
 
 # MacOS files
 .DS_Store
+
+# pdflatex
+*.aux
+*.lof
+*.log
+*.lol
+*.lot
+*.out
+*.pyg
+*.toc
+*.synctex.gz
+
+# backups
+*.backup
+*.bak
+*~
+
+# pdf files
+*.pdf
+
+# R
+.Rhistory
+
+# Texpad
+.texpadtmp
