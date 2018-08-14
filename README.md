@@ -32,4 +32,5 @@ make
 ```
 
 *Memoria y Presentación* liberada bajo la licencia **Creative Commons Attribution-ShareAlike 4.0 International**.
+
 *Código* liberado bajo licencia **GNU GENERAL PUBLIC LICENSE Version 3**.
