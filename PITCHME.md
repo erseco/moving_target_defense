@@ -10,7 +10,44 @@ Sistema de ciberdefensa dinámica basada en algoritmos evolutivos para la preven
 - Tutor: Juan Julián Merelo Guervós
 
 Trabajo realizado bajo licencia CC-BY-SA 4.0
+
 ![CC-BY-SA](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)
+
+---
+
+## Introducción
+
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+
+---
+
+## Metodología
+
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+
+---
+
+## Resultados
+
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+
+---
+
+## Conclusiones
+
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
+- Lorem ipsum
 
 ---
 
