@@ -130,3 +130,5 @@ venv.bak/
 
 # Texpad
 .texpadtmp
+*.tpbuild
+wordcount
