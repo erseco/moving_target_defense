@@ -44,7 +44,7 @@ Trabajo realizado bajo licencia CC-BY-SA 4.0
 
 ## Conclusiones
 
-- Lorem ipsum
+- Lorem **ipsum**
 - Lorem ipsum
 - Lorem ipsum
 - Lorem ipsum
