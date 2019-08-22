@@ -2,7 +2,6 @@
 
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![GitHub](https://img.shields.io/github/license/erseco/moving_target_defense.svg)](https://github.com/erseco/moving_target_defense/blob/master/LICENSE)
-[![GitHub](https://img.shields.io/github/forks/erseco/moving_target_defense.svg)](https://github.com/erseco/moving_target_defense/network)
 [![Build Status](https://travis-ci.com/erseco/moving_target_defense.svg?branch=master)](https://travis-ci.com/erseco/moving_target_defense)
 
 ## Sistema de ciberdefensa dinámica basada en algoritmos evolutivos para la prevención de ataques informáticos
@@ -25,9 +24,7 @@ Mediante algoritmos evolutivos trataremos de configurar diferentes servicios de 
 Memoria realizada con LaTeX, para generar el archivo PDF introducir las siguientes órdenes:
 
 ```
-sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended
-  texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-bibtex-extra
-  biber
+sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-bibtex-extra biber
 make
 ```
 
