@@ -1,0 +1,17 @@
+dist: xenial
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended
+  texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-bibtex-extra
+  biber
+script:
+- make
+deploy:
+  provider: releases
+  api_key:
+    secure: nHlJ0wJNXbzl3ZS50505GNFgmXdC/sn5neB8WSN5278PSHIR34r0E1Sz7MO36dNBGprhvn33HNprgg6HnmhCLZBgWxbAyoFWUzEpiisWlJFTkHQM6TzoRk0N8PUZu+8Jwq4tpuKhA3dh5i43vg4f1rgWyywunHdMkkxETkog2Zx1DC7cjraleZQjAOBMLVMZ2Hks0Gi1OPb2Yezlry1XPrCkmBlfTIuz2R4E6aMD+MLoG1gBmojQIYY1rZRfFT+C5Pe627Z3cC6gMoI19KDJcuIxEfkdnoYSVAvOrp7m2uaHIknR8K3yIbzT6eEucZPV1t6Z6the5vvBnwC9+gs+aR92M9GHSdQ1It/Het0My/Vd/EKnt3S2mnJUs2gQ1eOEI4SWI5lr3O+aSgVNrYouuMxIua75/RmaAtmYaD8XZtZYrcmjPqzXhTSpCPW6lXo6IlE5Z1z6Ow0onWfN9Yk/7uF8+KinfGqeibwiS1nX/bH374SvCIWuuyuch8i9WrQZJgWs2BGLcYNUG/xsgeoL7eDmHqya3shrpiwlAdx5CJ49dLNnAulF/V8SlE5EypnYcLV1gc5RoBZOdilGPNn2IRn7F1YOfYKz1NADBHR9lNSb2sEj/zf8B3wuVyU1NM3B8Itmc+zg8w3imlT6lngFdVKpHjFMW9IXoiKN2Y9o61A=
+  file: project.pdf
+  skip_cleanup: true
+  overwrite: true
+  on:
+    repo: erseco/moving_target_defense
+    tags: true
