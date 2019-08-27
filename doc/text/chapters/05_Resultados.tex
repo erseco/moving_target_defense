@@ -1,0 +1,200 @@
+\chapter{Resultados}
+
+En este capítulo pasamos a detallar los resultados de todos y cada uno de los test que realizamos en base a la metodología que definimos en el capítulo anterior.
+
+\section{Análisis inicial del sistema}
+
+Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en la figura \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente.
+
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Ejemplo de configuración aleatoria de NGINX}]
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon off;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 1353;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 100;
+    disable_symlinks on;
+    autoindex on;
+    send_timeout 1;
+    large_client_header_buffers 4 1618;
+    client_max_body_size 1476608;
+    server_tokens on;
+    gzip off;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: WRONG VALUE;
+            add_header X-Powered-By: PHP/7.2.1;
+            add_header X-Content-Type-Options: nosniff;
+            add_header Server: nginx/1.16.0;
+        }
+    }
+}
+\end{lstlisting}
+
+Los cromosomas representan una combinación de configuraciones que tiene un tamaño construido de acuerdo a los parámetros de las configuraciones donde un alelo o más representan un parámetro. En esta investigación, el tamaño de los cromosomas es de 13 y el total de individuos en una generación es de 20, lo que es suficiente para mantener la diversidad de los parámetros de acuerdo con el número de parámetros. El número de soluciones en una generación ha sido determinado después de muchos experimentos del algoritmo. Es posible aumentar el número de cromosomas en una generación, lo que podría aumentar la diversidad, pero eso costaría más tiempo para las pruebas.
+
+\bigskip
+Para validar que nuestros datos son correctos se han introducido algunos errores en la configuración de forma intencional. Las cabeceras `X-Frame-Options' y `X-Powered-By' contienen unos valores incorrectos al final, por lo que el gen 10 nunca podrá tener un valor de 3, asimismo el gen 11 nunca podrá tener un valor de 5. Con esto nos aseguramos que efectivamente las configuraciones incorrectas nunca serán dadas por válidas.
+
+\section{Resultados tras 2 generaciones}
+
+Se han generado 20 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 2 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1253       & 23         & 1          & 0          & 1          & 1424       & 1052       & 1          & 1          & {\color[HTML]{FE0000}3}           & 0           & 0           & 2           \\ \hline
+1129       & 64         & 1          & 0          & 1          & 975        & 1386       & 0          & 1          & {\color[HTML]{FE0000}3}           & 0           & 1           & 2           \\ \hline
+1971       & 106        & 1          & 1          & 1          & 1170       & 1943       & 0          & 1          & 2           & 1           & 1           & 0           \\ \hline
+1971       & 89         & 0          & 0          & 1          & 1187       & 1272       & 0          & 0          & 2           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
+1456       & 118        & 1          & 0          & 1          & 855        & 827        & 1          & 0          & {\color[HTML]{FE0000}3}           & {\color[HTML]{FE0000}5}           & 0           & 0           \\ \hline
+716        & 100        & 0          & 1          & 1          & 1604       & 652        & 1          & 0          & {\color[HTML]{FE0000}3}           & 0           & 0           & 1           \\ \hline
+1330       & 108        & 1          & 1          & 1          & 925        & 1980       & 0          & 1          & 0           & {\color[HTML]{FE0000}5}           & 1           & 0           \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
+729        & 113        & 0          & 0          & 1          & 1622       & 1345       & 1          & 1          & 2           & {\color[HTML]{FE0000}5}           & 0           & 2           \\ \hline
+1495       & 15         & 1          & 0          & 1          & 1259       & 648        & 0          & 1          & 1           & 2           & 1           & 2           \\ \hline
+556        & 108        & 1          & 1          & 0          & 1091       & 1478       & 1          & 1          & 1           & 0           & 0           & 1           \\ \hline
+1256       & 45         & 0          & 0          & 1          & 1881       & 972        & 0          & 0          & 0           & 3           & 1           & 1           \\ \hline
+1090       & 87         & 1          & 0          & 0          & 648        & 1617       & 1          & 0          & 1           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
+1612       & 54         & 1          & 0          & 0          & 1360       & 1016       & 0          & 0          & 0           & 1           & 0           & 1           \\ \hline
+972        & 113        & 1          & 0          & 1          & 1731       & 1670       & 0          & 1          & 0           & 1           & 0           & 2           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
+1146       & 25         & 1          & 0          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
+1979       & 53         & 0          & 0          & 0          & 1014       & 1333       & 1          & 1          & 2           & 1           & 1           & 2           \\ \hline
+1934       & 42         & 1          & 1          & 1          & 1156       & 1736       & 1          & 1          & 0           & 4           & 1           & 1           \\ \hline
+1273       & 111        & 1          & 1          & 0          & 1148       & 1050       & 1          & 0          & {\color[HTML]{FE0000}3}           & 4           & 1           & 0           \\ \hline
+\end{tabular}
+\caption{Población inicial generada aleatoriamente para 2 generaciones}
+\end{table}
+
+Tras la evolución hemos obtenido el siguiente resultado
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 0           & 4           & 1           & 0           \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1549       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
+830        & 36         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
+515        & 66         & 1          & 1          & 0          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 2           & 3           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
+830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
+515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
+\end{tabular}
+\caption{Población final tras 2 generaciones}
+\end{table}
+
+Como podemos observar con solo 2 generaciones ya no obtenemos configuraciones erróneas, aunque en un primer momento pensábamos que con solo dos generaciones cabía la posibilidad de que un individuo incorrecto se mantuviera en la población pero no ha sido así.
+
+\bigskip
+De esta población obtenemos la siguiente configuración de NGINX que podríamos aplicar en nuestro servidor.
+
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 2 generaciones}]
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon off;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 830;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 36;
+    disable_symlinks off;
+    autoindex on;
+    send_timeout 1;
+    large_client_header_buffers 4 565;
+    client_max_body_size 1225728;
+    server_tokens on;
+    gzip on;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: DENY;
+            add_header X-Powered-By: nginx/1.16.0;
+            add_header X-Content-Type-Options: "";
+            add_header Server: caddy;
+        }
+    }
+}
+\end{lstlisting}
+
+\section{Resultados tras 30 generaciones}
+
+Se han generado 20 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 30 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+702        & 19         & 0          & 1          & 1          & 1813       & 818        & 1          & 1          & 2           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
+1343       & 44         & 1          & 1          & 1          & 1582       & 976        & 1          & 0          & 0           & 3           & 0           & 0           \\ \hline
+915        & 90         & 1          & 1          & 0          & 1103       & 1701       & 1          & 1          & {\color[HTML]{FE0000}3}           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
+1304       & 81         & 1          & 0          & 0          & 1836       & 1345       & 0          & 1          & 1           & 3           & 0           & 0           \\ \hline
+887        & 78         & 1          & 0          & 0          & 756        & 1815       & 1          & 1          & 2           & 4           & 0           & 1           \\ \hline
+574        & 11         & 0          & 1          & 1          & 1143       & 761        & 0          & 1          & 1           & 2           & 1           & 0           \\ \hline
+808        & 58         & 0          & 1          & 1          & 1234       & 1534       & 0          & 1          & 2           & 2           & 1           & 1           \\ \hline
+1673       & 85         & 0          & 1          & 1          & 1031       & 1523       & 1          & 0          & 1           & 3           & 1           & 1           \\ \hline
+1100       & 41         & 1          & 0          & 0          & 1130       & 916        & 1          & 1          & {\color[HTML]{FE0000}3}           & 3           & 1           & 1           \\ \hline
+1388       & 84         & 1          & 1          & 0          & 1880       & 1430       & 1          & 1          & 2           & 1           & 1           & 0           \\ \hline
+1405       & 91         & 1          & 0          & 0          & 1745       & 1115       & 1          & 0          & 2           & 4           & 0           & 2           \\ \hline
+1044       & 66         & 1          & 0          & 1          & 1450       & 707        & 1          & 0          & 2           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
+1135       & 54         & 1          & 0          & 1          & 779        & 1764       & 0          & 1          & 1           & {\color[HTML]{FE0000}5}           & 0           & 0           \\ \hline
+1512       & 28         & 0          & 1          & 1          & 670        & 1118       & 1          & 0          & {\color[HTML]{FE0000}3}           & 2           & 1           & 0           \\ \hline
+1539       & 51         & 0          & 1          & 1          & 1750       & 1446       & 0          & 0          & 1           & 0           & 1           & 2           \\ \hline
+1100       & 80         & 0          & 1          & 0          & 1562       & 904        & 0          & 1          & 2           & 0           & 0           & 1           \\ \hline
+1491       & 95         & 1          & 1          & 1          & 1639       & 1133       & 1          & 0          & 0           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
+1089       & 51         & 1          & 1          & 1          & 1602       & 1699       & 1          & 0          & {\color[HTML]{FE0000}3}           & 3           & 1           & 2           \\ \hline
+917        & 35         & 0          & 1          & 1          & 907        & 1326       & 0          & 1          & 0           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
+785        & 119        & 1          & 0          & 0          & 709        & 1035       & 0          & 0          & 0           & 4           & 1           & 1           \\ \hline
+\end{tabular}
+\end{table}
+
+Tras la evolución hemos obtenido el siguiente resultado
+
+
+
+Como podemos observar en este caso tampoco erróneas, con lo que podemos afirmar que el algoritmo genético ha evolucionado la población hasta llegar a un estado cercano al ideal.
+
+\bigskip
+De esta población obtenemos la siguiente configuración de NGINX que podríamos aplicar en nuestro servidor.
+
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 30 generaciones}]
+
+\end{lstlisting}
+
