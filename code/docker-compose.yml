@@ -1,0 +1,21 @@
+# Orquestation two containers
+# 1. A container with Python & NGINX based on Alpine
+# 2. A container based on the official owasp/zap2docker-bare
+---
+version: '3.5'
+services:
+
+  www.exampletfm.com:
+    build: .
+    depends_on:
+      - zap
+    volumes:
+      # We link the local files to easily modify the running code for tests
+      - ./zap.py:/tester/zap.py:ro
+      - ./fitness.py:/tester/fitness.py:ro
+      - ./generate_nginx_config.py:/tester/generate_nginx_config.py:ro
+      - ./genetic.py:/tester/genetic.py:ro
+
+  zap:
+    image: owasp/zap2docker-bare
+    command: zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
