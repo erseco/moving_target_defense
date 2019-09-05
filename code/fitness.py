@@ -22,6 +22,7 @@ def calculate_fitness(config):
 
     # Force kill running NGINX processes
     os.popen("kill -9 $(ps aux | grep  " + 'nginx' + " | awk '{print $2}') 2> /dev/null")
+    os.popen("pkill nginx 2> /dev/null")
 
     nginx = generate(config)
 
@@ -42,7 +43,7 @@ def calculate_fitness(config):
     if p.returncode == 0:
         p = Popen(['nginx', '-c', filename], stdout=PIPE, encoding='ascii')
 
-        alerts = test()
+        alerts = zap_test()
 
         # Print alerts (for debug purposes)
         # print("Alerts:")

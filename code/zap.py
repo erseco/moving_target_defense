@@ -20,7 +20,7 @@ proxy = "%s:%s" % (proxy_host, proxy_port)
 target = 'http://www.exampletfm.com'
 
 
-def test():
+def zap_test():
 
     zap = ZAPv2(apikey=apikey, proxies={'http': proxy})
 

@@ -96,7 +96,7 @@ def generate(config=generate_random_config()):
         user='nginx',
         pid='/var/run/nginx.pid',
         worker_processes=1,
-        daemon='off',  # passed in Dockerfile CMD
+        daemon='on',  # passed in Dockerfile CMD
         error_log='/var/log/nginx/error.log warn',
     )
 
