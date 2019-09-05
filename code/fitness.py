@@ -22,8 +22,6 @@ def calculate_fitness(config):
 
     # Force kill running NGINX processes
     print("Killing existing NGINX processes...")
-    os.popen("kill -9 $(ps aux | grep  " + 'nginx' + " | awk '{print $2}') 2> /dev/null")
-    os.popen("pkill nginx 2> /dev/null")
     Popen(["pkill", "nginx"])
 
     nginx = generate(config)
