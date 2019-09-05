@@ -15,6 +15,5 @@ jobs:
         cd code
         docker-compose build
         docker-compose up -d
-        sleep 20
-        export COMPOSE_INTERACTIVE_NO_CLI=1
-        docker-compose exec www.exampletfm.com python3 genetic.py
+        sleep 40
+        docker-compose exec -T www.exampletfm.com python3 genetic.py
