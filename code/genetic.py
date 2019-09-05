@@ -13,7 +13,7 @@ from fitness import *
 genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
-mutation_chance = 0.2  # The probability that an individual mutates
+mutation_chance = 0.4  # The probability that an individual mutates
 generations = 30  # The number of generations that we will evolve
 
 
@@ -59,10 +59,10 @@ def selection_and_reproduction(population):
     # Genetic material is mixed to create new individuals
     for i in range(len(population)-pressure):
         gen = random.randint(1, genes - 1)  # A gen is chosen to make the exchange
-        padre = random.sample(selected, 2)  # Two parents are selected
+        parent = random.sample(selected, 2)  # Two parents are selected
 
-        population[i][:gen] = padre[0][:gen]  # Genetic material from parents is mixed into the new individual
-        population[i][gen:] = padre[1][gen:]
+        population[i][:gen] = parent[0][:gen]  # Genetic material from parents is mixed into the new individual
+        population[i][gen:] = parent[1][gen:]
 
     return population  # The array now has a new population of individuals, which are returned.
 
@@ -87,21 +87,22 @@ def mutation(population):
     return population
 
 
-# Initialize a population
-population = initialize()
+if __name__ == "__main__":
+    # Initialize a population
+    population = initialize()
 
-print("Initial population:")
-pprint(population)  # The initial population is shown
+    print("Initial population:")
+    pprint(population)  # The initial population is shown
 
-# Evolves the population
-for i in range(generations):
-    population = selection_and_reproduction(population)
-    population = mutation(population)
+    # Evolves the population
+    for i in range(generations):
+        population = selection_and_reproduction(population)
+        population = mutation(population)
 
-# Print the results
-print("Final Population:")
-pprint(population)  # The evolved population is shown
+    # Print the results
+    print("Final Population:")
+    pprint(population)  # The evolved population is shown
 
-print("")
-print("Print a random population element as NGINX configuration:")
-print(generate(random.choice(population)))
+    print("")
+    print("Print a random population element as NGINX configuration:")
+    print(generate(random.choice(population)))

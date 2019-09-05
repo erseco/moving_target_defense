@@ -1,2 +1,6 @@
 python-owasp-zap-v2.4
 nginx-config-builder
+pytest
+pycodestyle
+sultan
+mock

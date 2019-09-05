@@ -9,13 +9,36 @@
 __author__ = "Ernesto Serrano"
 __license__ = "GPLv3"
 __email__ = "erseco@correo.ugr.es"
-from generate_nginx_config import *
 from zap import *
 
 from subprocess import run, Popen, PIPE
 
 import tempfile
 import os
+
+import random
+
+
+def generate_random_config():
+    """
+        Generate a random configuration, the positions are the selected NGINX
+        directives to test, we have binary, integer and list directives
+    """
+    return [
+        random.randint(512, 2048),   # worker_connections
+        random.randint(10, 120),     # keepalive_timeout
+        random.randint(0, 1),        # disable_symlinks
+        random.randint(0, 1),        # autoindex
+        random.randint(0, 1),        # send_timeout
+        random.randint(512, 2048),   # large_client_header_buffers
+        random.randint(512, 2048),   # client_max_body_size
+        random.randint(0, 1),        # server_tokens
+        random.randint(0, 1),        # gzip
+        random.randint(0, 3),        # X-Frame-Options
+        random.randint(0, 5),        # X-Powered-By
+        random.randint(0, 1),        # X-Content-Type-Options
+        random.randint(0, 2),        # server
+    ]
 
 
 def fitness(config):
@@ -25,14 +48,10 @@ def fitness(config):
 
     nginx = generate(config)
 
-    new_file, filename = tempfile.mkstemp()
-
-    # print(filename)
-
-    # os.write(new_file, nginx)
+    filename = tempfile.mkstemp()
 
     with open(filename, 'w') as f:
-        f.write(str(nginx)) # where `stuff` is, y'know... stuff to write (a string)
+        f.write(str(nginx))
 
     p = run(['nginx', '-t', '-c', filename], stdout=PIPE, encoding='ascii')
 
@@ -55,6 +74,5 @@ def fitness(config):
         p.terminate()
 
     os.unlink(filename)
-    os.close(new_file)
 
     return alerts
