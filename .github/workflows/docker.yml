@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
+        cd code
         docker-compose build
         docker-compose up -d
         sleep 20
