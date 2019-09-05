@@ -60,3 +60,36 @@ def test_mutation(function1, function2):
     ]
     result = genetic.mutation(population)
     assert(result == expected_result)
+
+
+@mock.patch('random.randint', return_value=6)
+def test_crossover_one_point_6(function):
+    """Test crossover function"""
+    individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    expected_result = [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+    result = genetic.crossover_one_point(individual1, individual2)
+    assert(result == expected_result)
+
+
+@mock.patch('random.randint', return_value=10)
+def test_crossover_one_point_10(function):
+    """Test crossover function"""
+    individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    expected_result = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    result = genetic.crossover_one_point(individual1, individual2)
+    assert(result == expected_result)
+
+
+@mock.patch('random.randint', return_value=7)
+def test_crossover_two_points_7(function1):
+    """Test crossover function"""
+    individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    result = genetic.crossover_two_points(individual1, individual2)
+    assert(result == expected_result)

@@ -39,6 +39,28 @@ def fitnes(individual):
     return fitness(individual)
 
 
+def crossover_one_point(individual1, individual2):
+    """
+        Executes a one point crossover on the input individuals.
+    """
+
+    # A random crosspoint is chosen to make the exchange
+    crosspoint = random.randint(1, genes - 1)
+    return individual1[crosspoint:] + individual2[:crosspoint]
+
+
+def crossover_two_points(individual1, individual2):
+    """
+        Executes a two-point crossover on the input individuals.
+    """
+
+    # Two random crosspoints is chosen to make the exchange
+    crosspoint1 = random.randint(1, genes - 3)
+    crosspoint2 = random.randint(crosspoint1, genes - 1)
+
+    return individual1[:crosspoint1] + individual2[crosspoint1:crosspoint2] + individual1[crosspoint2:]
+
+
 def selection_and_reproduction(population):
     """
         Scores all elements of the population and keeps the best.
@@ -46,9 +68,6 @@ def selection_and_reproduction(population):
         Then mix the genetic material of the chosen ones to create new individuals and
         fill in the population (also keeping a copy of the selected individuals without the
         modify).
-
-        Finally mutate to individuals.
-
     """
     scored = [(fitnes(i), i) for i in population]  # Calculates the fitness of each individual, and stores it in pairs ordered in the form (5 , [1,2,1,1,1,4,1,8,9,4,1])
     scored = [i[1] for i in sorted(scored, reverse=True)]  # Sorts the ordered pairs and is left alone with the array of values
@@ -58,11 +77,11 @@ def selection_and_reproduction(population):
 
     # Genetic material is mixed to create new individuals
     for i in range(len(population) - pressure):
-        gen = random.randint(1, genes - 1)  # A gen is chosen to make the exchange
         parent = random.sample(selected, 2)  # Two parents are selected
 
-        population[i][:gen] = parent[0][:gen]  # Genetic material from parents is mixed into the new individual
-        population[i][gen:] = parent[1][gen:]
+        # Genetic material from parents is mixed into the new individual
+        # population[i] = crossover_one_point(parent[0], parent[1])
+        population[i] = crossover_two_points(parent[0], parent[1])
 
     return population  # The array now has a new population of individuals, which are returned.
 
