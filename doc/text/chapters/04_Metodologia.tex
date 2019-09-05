@@ -33,7 +33,7 @@ Se ha decidido desarrollar este proyecto en el lenguaje de programación Python 
 
 \section{Análisis general del problema}
 
-Teniendo en cuenta la ingente cantidad de servicios de red con sus múltiples opciones de configuración se ha optado por limitar este proyecto a alterar y optimizar la configuración de un servidor HTTP, concretamente NGINX ya en los últimos años ha desbancado a Apache como el servidor HTTP  más utilizado del mundo\cite{w3techs_usage_2019}.
+Teniendo en cuenta la ingente cantidad de servicios de red con sus múltiples opciones de configuración se ha optado por limitar este proyecto a alterar y optimizar la configuración de un servidor HTTP, concretamente NGINX ya en los últimos años ha desbancado a Apache como el servidor HTTP  más utilizado del mundo \cite{w3techs_usage_2019}.
 
 \bigskip
 La configuración de NGINX, al igual que la de muchos otros servidores, se realiza mediante ficheros de texto plano con una sintaxis específica, la misma se puede encontrar definida en la siguiente URL: \url{http://nginx.org/en/docs/beginners_guide.html#conf_structure} y consta de múltiples directivas, podemos ver un ejemplo aquí: \ref{lst:nginx_config}.
@@ -90,7 +90,7 @@ Para empezar definimos un banco de pruebas para comprobar que la herramienta OWA
 A la hora de obtener una web para testear se estuvo barajando el uso de diferentes entornos web como pueden ser Galileo (Perl), WordPress (PHP), una simple web realizada en html\ref{lst:simple_html_web} e incluso una aplicación web premeditadamente vulnerable desarrollada por OWASP llamada `Juice-Shop' realizada con \textbf{Node.js} pero al final se optó por utilizar el mensaje de bienvenida de `NGINX' (ver \ref{lst:nginx_welcome_message}). La configuración estándar de NGINX con dicho mensaje nos mostraba 5 alertas \ref{lst:owas_zap_welcome_message_alerts} siendo mucho mas fácil de gestionar que las 71 que obteníamos con `Juice-Shop'.
 
 \bigskip
-Una parte muy importante para el correcto funcionamiento de OWASP ZAP fue simular un dominio, en este caso utilizamos el conocido \textfb{example.com} que es un nombre reservado por la IANA (Internet Assigned Numbers Authority) en el RFC2606 (\cite{eastlake_reserved_1999}). Para hacer uso del mismo se ha optado por darle ese nombre de \textfb{host} al contenedor que levanta NGINX.
+Una parte muy importante para el correcto funcionamiento de OWASP ZAP fue simular un dominio, en este caso utilizamos el conocido \textfb{example.com} que es un nombre reservado por la IANA (Internet Assigned Numbers Authority) en el RFC2606 \cite{eastlake_reserved_1999}. Para hacer uso del mismo se ha optado por darle ese nombre de \textfb{host} al contenedor que levanta NGINX.
 
 
 \begin{lstlisting}[language=html, label={lst:simple_html_web},caption={Web sencilla realizada en HTML puro}]

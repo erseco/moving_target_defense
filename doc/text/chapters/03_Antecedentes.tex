@@ -4,7 +4,7 @@ En este capítulo vamos analizar el estado de arte actual y las tecnologías can
 
 \section {Protocolos y/o aplicaciones de servidores de red}
 
-En esta sección analizaremos algunos de los protocolos de red más conocidos así como algunas de sus implementaciones. Ateniéndonos a la filosofía abierta de este proyecto nos limitaremos a las implementaciones libres de los mismos, además, diversas publicaciones demuestran que el software de código abierto es mas seguro que el software cerrado\cite{clark_is_2009}.
+En esta sección analizaremos algunos de los protocolos de red más conocidos así como algunas de sus implementaciones. Ateniéndonos a la filosofía abierta de este proyecto nos limitaremos a las implementaciones libres de los mismos, además, diversas publicaciones demuestran que el software de código abierto es mas seguro que el software cerrado \cite{clark_is_2009}.
 
 \subsection {SMB - Server Message Block}
 
@@ -14,7 +14,7 @@ Es un protocolo de red desarrollado por IBM a principios de la década de los 90
 Debido a la cantidad de sistemas compatibles es uno de los protocolos más utilizados para compartir ficheros en redes empresariales, esto hace que sea uno de los objetivos principales de muchos ciberataques.
 
 \bigskip
-Por poner un ejemplo, en mayo de 2017 hubo un ciberataque masivo causado por el ransomware WannaCry\cite{sarabia_mayor_2017}, dicho software hacía uso de un exploit conocido como EternalBlue que conseguía penetrar en sistemas que todavía hacían uso de los protocolos SMB1 y SMB2 obligando a MicroSoft a publicar parches incluso para sistemas operativos que habían terminado su ciclo de vida (Windows XP y Windows Vista).
+Por poner un ejemplo, en mayo de 2017 hubo un ciberataque masivo causado por el ransomware WannaCry \cite{sarabia_mayor_2017}, dicho software hacía uso de un exploit conocido como EternalBlue que conseguía penetrar en sistemas que todavía hacían uso de los protocolos SMB1 y SMB2 obligando a MicroSoft a publicar parches incluso para sistemas operativos que habían terminado su ciclo de vida (Windows XP y Windows Vista).
 
 
 \subsubsection {Implementaciones libres}
@@ -131,7 +131,7 @@ OpenSSH es una implementación libre del protocolo SSH desarrollado por Theo de 
 
 \subsection {FTP - File Transfer Protocol}
 
-FTP (File Transfer Protocol) es uno de los primero protocolos diseñado para la transferencia de archivos entre sistemas utilizando una arquitectura cliente/servidor. A pesar de sus problemas de seguridad\cite{todd_why_2000} es uno de los protocolos más utilizados para transferir archivos. Dichos problemas se deben a que el todo el intercambio de información, desde la autenticación del usuario hasta la transferencia de, archivo, se realiza en texto plano sin ningún tipo de cifrado. Hoy en día se aconseja el uso de otros métodos mas eficaces como los programas rsync o scp basados a su vez en SSH. El propio repositorio de código de vsftpd fue comprometido en 2011\cite{hkcert_security_bulletin_sa11070501_2011}.
+FTP (File Transfer Protocol) es uno de los primero protocolos diseñado para la transferencia de archivos entre sistemas utilizando una arquitectura cliente/servidor. A pesar de sus problemas de seguridad \cite{todd_why_2000} es uno de los protocolos más utilizados para transferir archivos. Dichos problemas se deben a que el todo el intercambio de información, desde la autenticación del usuario hasta la transferencia de, archivo, se realiza en texto plano sin ningún tipo de cifrado. Hoy en día se aconseja el uso de otros métodos mas eficaces como los programas rsync o scp basados a su vez en SSH. El propio repositorio de código de vsftpd fue comprometido en 2011 \cite{hkcert_security_bulletin_sa11070501_2011}.
 
 \subsubsection {Implementaciones libres}
 
