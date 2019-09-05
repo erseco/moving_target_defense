@@ -24,7 +24,6 @@ def test():
 
     zap = ZAPv2(apikey=apikey, proxies={'http': proxy})
 
-
     # Proxy a request to the target so that ZAP has something to deal with
     print('Accessing target {}'.format(target))
     # zap.urlopen(target)
@@ -43,8 +42,7 @@ def test():
 
     print('Spider completed')
 
-    pprint('Enable all passive scanners -> ' +
-            zap.pscan.enable_all_scanners())
+    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners())
 
     while (int(zap.pscan.records_to_scan) > 0):
         print('Records to passive scan : {}'.format(zap.pscan.records_to_scan))
@@ -54,9 +52,7 @@ def test():
 
     print('Active Scanning target {}'.format(target))
 
-    pprint(
-        'Enable all scanners -> ' +
-        zap.ascan.enable_all_scanners())
+    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners())
 
     scanid = zap.ascan.scan(target)
     while (int(zap.ascan.status(scanid)) < 100):

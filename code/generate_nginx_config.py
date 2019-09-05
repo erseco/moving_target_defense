@@ -29,9 +29,9 @@ def generate(config=fitness.generate_random_config()):
         fitness.generate_random_config()
     """
     events = Section(
-            'events',
-            worker_connections=set_directive_int(config[0])
-            )
+        'events',
+        worker_connections=set_directive_int(config[0])
+    )
 
     http = Section(
         'http',
@@ -44,7 +44,7 @@ def generate(config=fitness.generate_random_config()):
         autoindex=set_directive_on_off(config[3]),
         send_timeout=set_directive_int(config[4]),
         large_client_header_buffers="%d %d" % (4, set_directive_int(config[5])),
-        client_max_body_size=set_directive_int(config[6])*1024,
+        client_max_body_size=set_directive_int(config[6]) * 1024,
         server_tokens=set_directive_on_off(config[7]),
         gzip=set_directive_on_off(config[8]),
 

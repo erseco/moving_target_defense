@@ -54,10 +54,10 @@ def selection_and_reproduction(population):
     scored = [i[1] for i in sorted(scored, reverse=True)]  # Sorts the ordered pairs and is left alone with the array of values
     population = scored
 
-    selected = scored[(len(scored)-pressure):]  # This line selects the 'n' individuals from the end, where n is given by 'pressure'.
+    selected = scored[(len(scored) - pressure):]  # This line selects the 'n' individuals from the end, where n is given by 'pressure'.
 
     # Genetic material is mixed to create new individuals
-    for i in range(len(population)-pressure):
+    for i in range(len(population) - pressure):
         gen = random.randint(1, genes - 1)  # A gen is chosen to make the exchange
         parent = random.sample(selected, 2)  # Two parents are selected
 
@@ -72,7 +72,7 @@ def mutation(population):
         Individuals mutate randomly. Without the mutation of new genes the
         solution could never be reached.
     """
-    for i in range(len(population)-pressure):
+    for i in range(len(population) - pressure):
         if random.random() <= mutation_chance:  # Every individual in the population (except the parents) has a chance to mutate.
             gen = random.randint(0, genes - 1)  # A random gen is chosen
             new_value = generate_random_config()[gen]  # and a new value for this gen
