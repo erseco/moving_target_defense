@@ -7,7 +7,29 @@ __license__ = "GPLv3"
 __email__ = "erseco@correo.ugr.es"
 
 from nginx.config.api import Config, Section, Location, EmptyBlock, KeyMultiValueOption
-import fitness
+import random
+
+
+def generate_random_config():
+    """
+        Generate a random configuration, the positions are the selected NGINX
+        directives to test, we have binary, integer and list directives
+    """
+    return [
+        random.randint(512, 2048),   # worker_connections
+        random.randint(10, 120),     # keepalive_timeout
+        random.randint(0, 1),        # disable_symlinks
+        random.randint(0, 1),        # autoindex
+        random.randint(0, 1),        # send_timeout
+        random.randint(512, 2048),   # large_client_header_buffers
+        random.randint(512, 2048),   # client_max_body_size
+        random.randint(0, 1),        # server_tokens
+        random.randint(0, 1),        # gzip
+        random.randint(0, 3),        # X-Frame-Options
+        random.randint(0, 5),        # X-Powered-By
+        random.randint(0, 1),        # X-Content-Type-Options
+        random.randint(0, 2),        # server
+    ]
 
 
 def set_directive_on_off(chromosome):
@@ -22,11 +44,11 @@ def set_directive_list(chromosome, list):
     return list[chromosome]
 
 
-def generate(config=fitness.generate_random_config()):
+def generate(config=generate_random_config()):
     """
         Generate a configuration based on the "config" variable, if this var
         is not setted we generate a random configuration with the function
-        fitness.generate_random_config()
+        generate_random_config()
     """
     events = Section(
         'events',

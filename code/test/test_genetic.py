@@ -20,7 +20,7 @@ def test_initialize():
     assert(len(population) == genetic.individuals)
 
 
-@mock.patch('genetic.fitness', return_value=1)
+@mock.patch('genetic.calculate_fitness', return_value=1)
 def test_selection_and_reproduction(function):
     """Test selection and reproduction"""
     population = [
@@ -84,12 +84,24 @@ def test_crossover_one_point_10(function):
     assert(result == expected_result)
 
 
-@mock.patch('random.randint', return_value=7)
-def test_crossover_two_points_7(function1):
+@mock.patch('random.randint', return_value=11)
+def test_crossover_one_point_11(function):
     """Test crossover function"""
     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    result = genetic.crossover_two_points(individual1, individual2)
+    expected_result = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    result = genetic.crossover_one_point(individual1, individual2)
     assert(result == expected_result)
+
+
+# TODO: get the way to mock two different random values
+# @mock.patch('random.randint', return_value=7)
+# def test_crossover_two_points_7(function1):
+#     """Test crossover function"""
+#     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+#     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+#     expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+#     result = genetic.crossover_two_points(individual1, individual2)
+#     assert(result == expected_result)

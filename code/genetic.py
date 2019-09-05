@@ -9,6 +9,7 @@ __email__ = "erseco@correo.ugr.es"
 
 import random
 from fitness import *
+from generate_nginx_config import *
 
 genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
@@ -36,7 +37,7 @@ def fitnes(individual):
     """
         Calculates the fitness of a specific individual.
     """
-    return fitness(individual)
+    return calculate_fitness(individual)
 
 
 def crossover_one_point(individual1, individual2):
