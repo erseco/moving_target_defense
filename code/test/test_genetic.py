@@ -1,5 +1,6 @@
 import genetic
 import mock
+import random
 """Pytest TDD Test definition file"""
 __author__ = "Ernesto Serrano"
 __license__ = "GPLv3"
@@ -95,13 +96,16 @@ def test_crossover_one_point_11(function):
     assert(result == expected_result)
 
 
-# TODO: get the way to mock two different random values
-# @mock.patch('random.randint', return_value=7)
-# def test_crossover_two_points_7(function1):
-#     """Test crossover function"""
-#     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-#     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+def test_crossover_two_points_7():
+    """Test crossover function"""
 
-#     expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-#     result = genetic.crossover_two_points(individual1, individual2)
-#     assert(result == expected_result)
+    # We initialize the seed to get always the same random numbers
+    random.seed(0)
+
+    individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    # expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    expected_result = [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1]
+    result = genetic.crossover_two_points(individual1, individual2)
+    assert(result == expected_result)
