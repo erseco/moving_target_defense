@@ -105,7 +105,6 @@ def test_crossover_two_points_7():
     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    # expected_result = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     expected_result = [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1]
     result = genetic.crossover_two_points(individual1, individual2)
     assert(result == expected_result)

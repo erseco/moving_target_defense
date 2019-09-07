@@ -31,54 +31,15 @@ La orquestación estará compuesta de dos contenedores, uno basado en \textit{Al
 
 Se ha decidido desarrollar este proyecto en el lenguaje de programación Python debido a estar familiarizado con este lenguaje y a la disponibilidad de una API de OWASP ZAP en dicho lenguaje. Además, aunque este proyecto no requiere un elevado rendimiento, diversas publicaciones indican un muy buen desempeño del lenguaje Python a la hora de trabajar con algoritmos genéticos \cite{merelo-guervos_comparison_2016}.
 
+\bigskip
+Se han seguido buenas práctias de programación como pueden ser escribir pruebas unitarias de cada función desarollada. Para ejecutar dichas pruebas unitarias se ha utilizado la herramienta \texttt{pytest}. También se ha tenido en cuenta que la codificación siga una guía de estilo, concretamente \texttt{PEP8} que son es la guía de estilo considerada `oficial' por parte de los desarrolladores de Python.
+
 \section{Análisis general del problema}
 
 Teniendo en cuenta la ingente cantidad de servicios de red con sus múltiples opciones de configuración se ha optado por limitar este proyecto a alterar y optimizar la configuración de un servidor HTTP, concretamente NGINX ya en los últimos años ha desbancado a Apache como el servidor HTTP  más utilizado del mundo \cite{w3techs_usage_2019}.
 
 \bigskip
 La configuración de NGINX, al igual que la de muchos otros servidores, se realiza mediante ficheros de texto plano con una sintaxis específica, la misma se puede encontrar definida en la siguiente URL: \url{http://nginx.org/en/docs/beginners_guide.html#conf_structure} y consta de múltiples directivas, podemos ver un ejemplo aquí: \ref{lst:nginx_config}.
-
-\begin{lstlisting}[label={lst:nginx_config},caption={Ejemplo de fichero de configuración de NGINX}]
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes auto;
-
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 1024;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 65;
-    gzip on;
-
-    server {
-        listen       80;
-        server_name  example.com;
-
-        access_log  /var/log/nginx/host.access.log  main;
-
-        location / {
-
-            add_header X-Frame-Options "SAMEORIGIN";
-            proxy_pass http://juice-shop:3000;
-            root   /usr/share/nginx/html;
-            index  index.html index.htm;
-        }
-
-        # redirect server error pages to the static page /50x.html
-        #
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-            root   /usr/share/nginx/html;
-        }
-
-    }
-}
-\end{lstlisting}
 
 Como podemos observar un fichero de configuración de NGINX tiene diferentes directivas que se pueden configurar de diferentes maneras, tanto para optimizar como para simplemente simular una configuración distinta y así hacer creer a un atacante que hemos cambiado de servidor HTTTP o incluso de servidor físico.
 
@@ -91,70 +52,6 @@ A la hora de obtener una web para testear se estuvo barajando el uso de diferent
 
 \bigskip
 Una parte muy importante para el correcto funcionamiento de OWASP ZAP fue simular un dominio, en este caso utilizamos el conocido \textfb{example.com} que es un nombre reservado por la IANA (Internet Assigned Numbers Authority) en el RFC2606 \cite{eastlake_reserved_1999}. Para hacer uso del mismo se ha optado por darle ese nombre de \textfb{host} al contenedor que levanta NGINX.
-
-
-\begin{lstlisting}[language=html, label={lst:simple_html_web},caption={Web sencilla realizada en HTML puro}]
-<!DOCTYPE html>
-<html lang="es-ES">
-  <head>
-    <meta charset="utf-8">
-    <title>Ejemplo de 2 párrafos</title>
-  </head>
-  <body>
-    <p>Esto es un párrafo.</p>
-    <p>Esto es otro párrafo.</p>
-  </body>
-</html>
-\end{lstlisting}
-
-\begin{lstlisting}[language=html, label={lst:nginx_welcome_message},caption={Mensaje de bienvenida de NGINX}]
-# curl -v www.example.com
-*   Trying 192.168.208.4:80...
-* TCP_NODELAY set
-* Connected to www.example.com (192.168.208.4) port 80 (#0)
-> GET / HTTP/1.1
-> Host: www.example.com
-> User-Agent: curl/7.65.1
-> Accept: */*
->
-* Mark bundle as not supporting multiuse
-< HTTP/1.1 200 OK
-< Server: NGINX/1.17.2
-< Date: Mon, 05 Aug 2019 13:42:32 GMT
-< Content-Type: text/html
-< Content-Length: 612
-< Last-Modified: Tue, 23 Jul 2019 13:01:30 GMT
-< Connection: keep-alive
-< ETag: "5d37052a-264"
-< Accept-Ranges: bytes
-<
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to NGINX!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>Welcome to NGINX!</h1>
-<p>If you see this page, the NGINX web server is successfully installed and
-working. Further configuration is required.</p>
-
-<p>For online documentation and support please refer to
-<a href="http://NGINX.org/">NGINX.org</a>.<br/>
-Commercial support is available at
-<a href="http://NGINX.com/">NGINX.com</a>.</p>
-
-<p><em>Thank you for using NGINX.</em></p>
-</body>
-</html>
-* Connection #0 to host www.example.com left intact
-\end{lstlisting}
 
 \bigskip
 Una vez hemos generado nuestro laboratorio para pruebas y viendo que se NGINX se ejecuta correctamente pasamos a probar como va cambiando la respuestas de OWASP ZAP dependiendo de la configuración de nuestro NGINX. Para ello agregamos la cabecera \begin{verbatim}add_header X-Frame-Options "SAMEORIGIN";\end{verbatim} y ejecutamos el conjunto, dándonos 4 vulnerabilidades en lugar de las 5 anteriores. Esta prueba nos indica que efectivamente la modificación de los parámetros de NGINX puede darnos configuraciones más o menos seguras.
@@ -379,23 +276,45 @@ La cabecera `Server' contiene la información acerca del software usado por el s
 \bigskip
 Al igual que con la cabecera `X-Powered-By', se recomienda no dar información demasiado extensa en dicha cabecera ya que puede revelar detalles que pueden facilitar la tarea de encontrar y explotar fallos de seguridad.
 
+\section{Diseño de la herramienta}
 
-\section{Generación de configuraciones}
-
-\bigskip
-Para generar las distintas configuraciones de NGINX utilizamos la librería \textfb{nginx-config-builder} desarrollada por Linkedin y licenciada bajo la BSD. Dicha librería la podemos encontrar en \url{https://github.com/linkedin/nginx-config-builder}. Haciendo uso de esta librería desarrollamos un script \ref{generate_nginx_config.py} que en base a un cromosoma generaba una configuración, sin saber todavía si dicha configuración podía funcionar o no.
+Para diseñar la herramienta hemos usado, como hemos mencionado anteriormente, el lenguaje de programación Python. Se han hecho uso de las librerías de código abierto \texttt{nginx-config-builder}, \texttt{ZAP API} así como \texttt{mock} para simular el comportamiento de funciones internas para conseguir una ejecución determinística de las pruebas unitarias.
 
 \bigskip
-El siguiente paso es conseguir saber primeramente si la configuración funciona y después saber si la misma configuración funcional es segura. Para lo primero el propio NGINX tiene una herramienta de comprobación de configuración, la podemos invocar con el comando \textfb{NGINX -t <archivo-configuracion.conf>}, dicha herramienta nos comprueba que la sintaxis del fichero de configuración sea correcto y NGINX pueda ejecutarse sin problemas. Para lo segundo configuraremos un servidor NGINX con dicha configuracion y haremos uso de la herramienta ZAP, para poder hacerlo de forma dinámica y sencilla utilizaremos la potencia de Docker.
+La herramientas se compone de un sencillo \textit{script} `genetic.py' que es el algoritmo genético en sí y que hace uso de algunas funciones auxiliares tambien definidas por nosotros para calcular el `fitness' usando el valor numérico devuelto por ZAP así como para la generación de la configuración de NGINX y la generación de los individuos, en la figura \ref{fig:diagrama_1} se puede ver el diagrama de clases de nuestra herramienta con sus funciones definidas y en la figura \ref{fig:diagrama_2} podemos ver un diagrama de paquetes en los que se puede apreciar como funciona el conjunto de la aplicación en conjunto con el servidor NGINX y la herramienta OWASP ZAP.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{../images/diagrama_1}
+\caption{Diagrama de clases}
+\label{fig:diagrama_1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{../images/diagrama_2}
+\caption{Diagrama de paquetes}
+\label{fig:diagrama_2}
+\end{figure}
+
+En los siguientes puntos se detallará el desarrollo de cada una de las partes de la aplicación:
+
+\subsection{Generación de configuraciones}
+
+\bigskip
+Para generar las distintas configuraciones de NGINX utilizamos la librería \textfb{nginx-config-builder} desarrollada por la empresa Linkedin y licenciada bajo la BSD. Dicha librería la podemos encontrar en \url{https://github.com/linkedin/nginx-config-builder}. Haciendo uso de esta librería desarrollamos un script \ref{generate_nginx_config.py} que en base a un cromosoma generaba una configuración, sin saber todavía si dicha configuración podía funcionar o no.
+
+\bigskip
+El siguiente paso es conseguir saber primeramente si la configuración funciona y después saber si la misma configuración funcional es segura. Para lo primero el propio NGINX tiene una herramienta de comprobación de configuración, la podemos invocar con el comando \textfb{NGINX -t <archivo-configuracion.conf>}, dicha herramienta nos comprueba que la sintaxis del fichero de configuración sea correcto y NGINX pueda ejecutarse sin problemas. Para lo segundo configuraremos un servidor NGINX con dicha configuración y haremos uso de la herramienta ZAP, para poder hacerlo de forma dinámica y sencilla utilizaremos la potencia de Docker.
 
 \bigskip
 Nuestra función de evaluación utilizará una combinación de estas dos herramientas, ya que el primero nos servirá para descartar directamente las configuraciones erróneas y la segunda nos permitirá establecer la calidad de una configuración con un valor escalar.
 
-\section{Implementación del algoritmo genético}
+\subsection{Implementación del algoritmo genético}
 
 La implementación del algoritmo genético utiliza una combinación de procesos de selección, cruzamiento y mutación para mejorar la solución a través de varias generaciones.
-\bigskip
 
+\bigskip
 Aunque en un primero momento se planteó el uso de algún `framework' de algoritmos genéticos como puede ser \textfb{DEAP}, desarrollado en Python, pero se optó en su lugar por utilizar un algoritmo sencillo que cubría de sobra nuestras necesidades.
 
 \bigskip
@@ -409,3 +328,13 @@ El algoritmo genético se encarga de llamar a los anteriores scripts para genera
 
 \bigskip
 El algoritmo de puntuación (fitness.py \ref{fitness.py}) será el responsable de proporcionar al algoritmo genético las puntuaciones de fitness de las soluciones de seguridad. El sistema de puntuación se basa en las preferencias previas de STIG, que proporciona las vulnerabilidades, que será devuelto como un valor escalar dado por ZAP.
+
+\section{Metodología de desarrollo}
+
+Utilizar una metodología como puede ser el desarrollo `en cascada` no es viable en un proyecto de estas características, ya que se ha ido aprendiendo como funcionaban diversas herramientas a la vez que se estaba escribiendo el código, porque lo que han habido multitud de cambios.
+
+\bigskip
+Para el desarrollo de nuestro sistema se ha optado por una metodología ágil. Concretamente nos hemos basado en la metodología `eXtreme Programming' o programación extrema. De hecho el carácter de investigación de este proyecto se amolda perfectamente a las directrices de esta metodología puesto que el software y los requisitos se han ido cambiando a medida que se iban obteniendo resultados con las distintas herramientas. 
+
+
+

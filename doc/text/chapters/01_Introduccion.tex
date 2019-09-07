@@ -24,13 +24,16 @@ La forma mas común de realizar dichos ataques es haciendo uso de vulnerabilidad
 La protección contra multitud de amenazas de seguridad informática puede ser implementada mediante una correcta configuración del software existente sin necesidad de invertir en costosas soluciones de seguridad.
 
 \bigskip
-Los algoritmos genéticos, que es una heurística de búsqueda, se pueden utilizan para descubrir configuraciones de computadora nuevas, seguras y diversas mediante el modelado de una determinada configuración como si fueran cromosomas y las distintas opciones de configuración individuales como si fueran genes \cite{gensch_evolving_2016}. La idea principal de los algoritmos genéticos es que mediante mutación, cruce y selección de dichos cromosomas obtendremos mejores configuraciones. Dichas mutaciones se incorporan al azar, lo que proporciona diversidad.
+Asimismo, para mejorar el mecanismo de protección contra los ciberataques, el atacante puede ser engañado por un cambio continuo en la configuración de un determinado servicio y en el caso de que el atacante sea capaz de descubrir vulnerabilidades en un programa específico el algoritmo genético habrá cambiado la configuración antes de que el atacante pueda definir un ataque en base a las vulnerabilidades descubiertas.
 
 \bigskip
-Para mejorar el mecanismo de protección contra los ciberataques, el atacante puede ser engañado por un cambio continuo en la configuración de un determinado servicio y en el caso de que el atacante sea capaz de descubrir vulnerabilidades en un programa específico el algoritmo genético habrá cambiado la configuración antes de que el atacante pueda definir un ataque en base a las vulnerabilidades descubiertas.
+Encontrar dichas configuraciones correctas, así como similares configuraciones totalmente funcionales puede ser una tarea inabarcable si se realiza de forma manual por lo que lo ideal sería encontrar una forma de generad dichas configuraciones de forma automática.
 
 \bigskip
-En nuestro caso concreto, los algoritmos genéticos nos proporcionarán una mejor seguridad a través de la diversidad \cite{crouse_improving_2012}.
+Los algoritmos genéticos, que es una heurística de búsqueda, se podrían utilizan para descubrir nuevas configuraciones, seguras y diversas mediante el modelado de una determinada configuración como si fueran cromosomas y las distintas opciones de configuración individuales como si fueran genes \cite{john_evolutionary_2014}. La idea principal de los algoritmos genéticos es que mediante mutación, cruce y selección de dichos cromosomas obtendremos mejores configuraciones. Dichas mutaciones se incorporan al azar, lo que proporciona diversidad.
+
+\bigskip
+En este caso concreto, los algoritmos genéticos nos pueden proporcionar una mejor seguridad a través de la diversidad \cite{crouse_improving_2012}.
 
 \bigskip
 Todo el código utilizado para la realización de este proyecto así como las diferentes herramientas tienen licencias de código abierto, tanto por motivación ideológica como por seguridad, ya que diversos estudios indican que el Software Libre es mucho mas seguro que el propietario \cite{walia_comparative_2006} \cite{mansfield-devine_open_2008} \cite{clark_is_2009}.
@@ -44,10 +47,10 @@ Un atacante suele comenzar su ataque realizando un reconocimiento previo. Luego 
 La técnica del ``objetivo móvil'' o ``Moving Target Defense'' es aplicable incluso a elementos hardware como se ha visto en el diseño del procesador Morpheus que es capaz de cambiar su configuración interna cada 50 milisegundos \cite{gallagher_morpheus:_2019}.
 
 \bigskip
-En nuestro caso utilizaríamos un sistema de inteligencia artificial \cite{tribak_alisis_2012} para alterar la configuración de un servidor de forma regular saboteando así los esfuerzos de recopilación de información realizados por un posible atacante.
+Considerando los algoritmos genéticos como una de las líneas de la inteligencia artificial, lo utilizariamos \cite{tribak_alisis_2012} para alterar la configuración de un servidor de forma regular saboteando así los esfuerzos de recopilación de información realizados por un posible atacante.
 
 \bigskip
-Las distintas configuraciones posibles van cambiando (mutando) mediante un algoritmo genético hasta alcanzar una solución óptima. Si dichas configuraciones óptimas son aplicadas de forma regular la información recopilada previamente por un posible atacante ya no es efectiva consiguiendo una capa de protección sencilla y económica a la vez que se optimiza la configuración del servicio \cite{john_evolutionary_2014}.
+Las distintas configuraciones posibles van cambiando (mutando) mediante un algoritmo genético hasta alcanzar una solución óptima. Si dichas configuraciones óptimas son aplicadas de forma regular la información recopilada previamente por un posible atacante ya no es efectiva consiguiendo una capa de protección sencilla y económica a la vez que se optimiza la configuración del servicio \cite{gensch_evolving_2016}.
 
 \bigskip
 Es importante asegurarse de que las configuraciones generadas funcionen de una manera correcta, y es importante que dicha configuración sea segura. Es difícil encontrar una configuración segura debido a la gran cantidad de configuraciones para probar, y además de eso, es difícil encontrar la combinación entre las configuraciones que hace que los componentes sean seguros. Para solucionar este problema deberemos contar con una herramienta que nos pueda indicar el nivel de seguridad de una configuración determinada.

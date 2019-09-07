@@ -26,7 +26,114 @@
 \lstinputlisting[language=python,label={test_generate_nginx_config.py},caption={test\_generate\_nginx\_config.py}]{../../code/test/test_generate_nginx_config.py}
 \lstinputlisting[language=python,label={test_fitness.py},caption={test\_fitness.py}]{../../code/test/test_fitness.py}
 
-\section{Salidas de programas}
+\section{Ficheros de configuración}
+
+\begin{lstlisting}[label={lst:nginx_config},caption={Ejemplo de fichero de configuración de NGINX}]
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes auto;
+
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 1024;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 65;
+    gzip on;
+
+    server {
+        listen       80;
+        server_name  example.com;
+
+        access_log  /var/log/nginx/host.access.log  main;
+
+        location / {
+
+            add_header X-Frame-Options "SAMEORIGIN";
+            proxy_pass http://juice-shop:3000;
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=html, label={lst:simple_html_web},caption={Web sencilla realizada en HTML puro}]
+<!DOCTYPE html>
+<html lang="es-ES">
+  <head>
+    <meta charset="utf-8">
+    <title>Ejemplo de 2 párrafos</title>
+  </head>
+  <body>
+    <p>Esto es un párrafo.</p>
+    <p>Esto es otro párrafo.</p>
+  </body>
+</html>
+\end{lstlisting}
+
+\begin{lstlisting}[language=html, label={lst:nginx_welcome_message},caption={Mensaje de bienvenida de NGINX}]
+# curl -v www.example.com
+*   Trying 192.168.208.4:80...
+* TCP_NODELAY set
+* Connected to www.example.com (192.168.208.4) port 80 (#0)
+> GET / HTTP/1.1
+> Host: www.example.com
+> User-Agent: curl/7.65.1
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Server: NGINX/1.17.2
+< Date: Mon, 05 Aug 2019 13:42:32 GMT
+< Content-Type: text/html
+< Content-Length: 612
+< Last-Modified: Tue, 23 Jul 2019 13:01:30 GMT
+< Connection: keep-alive
+< ETag: "5d37052a-264"
+< Accept-Ranges: bytes
+<
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to NGINX!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to NGINX!</h1>
+<p>If you see this page, the NGINX web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://NGINX.org/">NGINX.org</a>.<br/>
+Commercial support is available at
+<a href="http://NGINX.com/">NGINX.com</a>.</p>
+
+<p><em>Thank you for using NGINX.</em></p>
+</body>
+</html>
+* Connection #0 to host www.example.com left intact
+\end{lstlisting}
+
+\section{Resultados de OWASP}
 
 \begin{lstlisting}[language=json,label={lst:owas_zap_welcome_message_alerts},caption={Alerts showed with NGINX default configuration}]
 [{'alert': 'Web Browser XSS Protection Not Enabled',
