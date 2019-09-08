@@ -52,96 +52,73 @@ Para validar que nuestros datos son correctos se han introducido algunos errores
 \bigskip
 A continuación pasamos a ejecutar nuestras pruebas utilizando diferentes valores y utilizando dos funciones de cruce distintas. Una funciona de cruzamiento lo hará en un único punto aleatorio y el otro lo hará en dos.
 
-\section{Cruzamiento en un único punto}
-
-\subsection{Resultados tras 2 generaciones}
-
-Se han generado 10 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 5 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-\hline
-\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
-1253       & 23         & 1          & 0          & 1          & 1424       & 1052       & 1          & 1          & {\color[HTML]{FE0000}3}           & 0           & 0           & 2           \\ \hline
-1129       & 64         & 1          & 0          & 1          & 975        & 1386       & 0          & 1          & {\color[HTML]{FE0000}3}           & 0           & 1           & 2           \\ \hline
-1971       & 106        & 1          & 1          & 1          & 1170       & 1943       & 0          & 1          & 2           & 1           & 1           & 0           \\ \hline
-1971       & 89         & 0          & 0          & 1          & 1187       & 1272       & 0          & 0          & 2           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
-1456       & 118        & 1          & 0          & 1          & 855        & 827        & 1          & 0          & {\color[HTML]{FE0000}3}           & {\color[HTML]{FE0000}5}           & 0           & 0           \\ \hline
-716        & 100        & 0          & 1          & 1          & 1604       & 652        & 1          & 0          & {\color[HTML]{FE0000}3}           & 0           & 0           & 1           \\ \hline
-1330       & 108        & 1          & 1          & 1          & 925        & 1980       & 0          & 1          & 0           & {\color[HTML]{FE0000}5}           & 1           & 0           \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
-729        & 113        & 0          & 0          & 1          & 1622       & 1345       & 1          & 1          & 2           & {\color[HTML]{FE0000}5}           & 0           & 2           \\ \hline
-1495       & 15         & 1          & 0          & 1          & 1259       & 648        & 0          & 1          & 1           & 2           & 1           & 2           \\ \hline
-556        & 108        & 1          & 1          & 0          & 1091       & 1478       & 1          & 1          & 1           & 0           & 0           & 1           \\ \hline
-1256       & 45         & 0          & 0          & 1          & 1881       & 972        & 0          & 0          & 0           & 3           & 1           & 1           \\ \hline
-1090       & 87         & 1          & 0          & 0          & 648        & 1617       & 1          & 0          & 1           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
-1612       & 54         & 1          & 0          & 0          & 1360       & 1016       & 0          & 0          & 0           & 1           & 0           & 1           \\ \hline
-972        & 113        & 1          & 0          & 1          & 1731       & 1670       & 0          & 1          & 0           & 1           & 0           & 2           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
-1146       & 25         & 1          & 0          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
-1979       & 53         & 0          & 0          & 0          & 1014       & 1333       & 1          & 1          & 2           & 1           & 1           & 2           \\ \hline
-1934       & 42         & 1          & 1          & 1          & 1156       & 1736       & 1          & 1          & 0           & 4           & 1           & 1           \\ \hline
-1273       & 111        & 1          & 1          & 0          & 1148       & 1050       & 1          & 0          & {\color[HTML]{FE0000}3}           & 4           & 1           & 0           \\ \hline
-\end{tabular}
-\caption{Población inicial generada aleatoriamente para 2 generaciones}
-\end{table}
-
-Tras la evolución hemos obtenido el siguiente resultado
-
-\begin{table}[H]
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-\hline
-\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 0           & 4           & 1           & 0           \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1549       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
-830        & 36         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
-515        & 66         & 1          & 1          & 0          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 2           & 3           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 3           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 1082       & 1402       & 0          & 1          & 0           & 0           & 1           & 0           \\ \hline
-830        & 36         & 0          & 1          & 1          & 565        & 1197       & 1          & 1          & 2           & 4           & 1           & 1           \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 3           & 1           & 0           \\ \hline
-515        & 66         & 1          & 1          & 0          & 1462       & 1452       & 1          & 1          & 0           & 0           & 1           & 0           \\ \hline
-\end{tabular}
-\caption{Población final tras 2 generaciones}
-\end{table}
-
-Como podemos observar con solo 2 generaciones ya no obtenemos configuraciones erróneas, aunque en un primer momento pensábamos que con solo dos generaciones cabía la posibilidad de que un individuo incorrecto se mantuviera en la población pero no ha sido así.
+\bigskip
+Se han generado los individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante las generaciones indicadas, podemos ver que hay configuraciones incorrectas (en rojo).
 
 \bigskip
-De esta población obtenemos la siguiente configuración de NGINX que podríamos aplicar en nuestro servidor.
+Tras cada ejecución obtenemos una configuración de NGINX que podríamos aplicar en nuestro servidor.
 
+\section{Cruzamiento en un único punto}
+
+\subsection{Población de 10 individuos durante 2 generaciones}
+Resultados para una población de 10 individuos durante 2 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1884  &  75  &  1  &  1  &  0  &  805  &  1491  &  1  &  1  &  0  &  {\color[HTML]{FE0000}4}  &  1  &  1 \\ \hline
+666  &  17  &  0  &  1  &  1  &  659  &  1251  &  0  &  1  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+1515  &  19  &  1  &  1  &  0  &  1104  &  1720  &  1  &  0  &  3  &  2  &  1  &  0 \\ \hline
+955  &  52  &  1  &  1  &  0  &  1867  &  525  &  1  &  1  &  0  &  {\color[HTML]{FE0000}5}  &  0  &  2 \\ \hline
+1916  &  110  &  1  &  0  &  1  &  846  &  619  &  0  &  1  &  2  &  2  &  0  &  0 \\ \hline
+604  &  106  &  1  &  0  &  1  &  2004  &  878  &  1  &  1  &  2  &  {\color[HTML]{FE0000}4}  &  1  &  0 \\ \hline
+925  &  65  &  1  &  1  &  0  &  884  &  2036  &  1  &  1  &  3  &  1  &  1  &  2 \\ \hline
+889  &  13  &  1  &  1  &  1  &  1599  &  1895  &  0  &  1  &  1  &  2  &  0  &  2 \\ \hline
+1324  &  92  &  1  &  1  &  1  &  2009  &  692  &  0  &  1  &  2  &  1  &  0  &  1 \\ \hline
+764  &  14  &  1  &  1  &  1  &  1076  &  1936  &  0  &  0  &  1  &  {\color[HTML]{FE0000}4}  &  1  &  2 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1324  &  92  &  0  &  1  &  1  &  659  &  1251  &  0  &  1  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+604  &  106  &  1  &  0  &  1  &  2004  &  878  &  1  &  1  &  0  &  1  &  0  &  1 \\ \hline
+666  &  17  &  0  &  0  &  1  &  846  &  619  &  0  &  1  &  2  &  2  &  0  &  0 \\ \hline
+666  &  17  &  0  &  0  &  1  &  2009  &  692  &  0  &  1  &  0  &  2  &  0  &  0 \\ \hline
+666  &  17  &  0  &  0  &  1  &  846  &  619  &  0  &  1  &  2  &  1  &  0  &  1 \\ \hline
+666  &  17  &  0  &  1  &  1  &  2009  &  692  &  0  &  1  &  0  &  1  &  0  &  1 \\ \hline
+666  &  17  &  0  &  1  &  1  &  659  &  1251  &  0  &  1  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+666  &  17  &  0  &  0  &  1  &  846  &  619  &  0  &  1  &  2  &  2  &  0  &  0 \\ \hline
+604  &  106  &  1  &  0  &  1  &  2004  &  878  &  1  &  1  &  2  &  {\color[HTML]{FE0000}4}  &  1  &  0 \\ \hline
+1324  &  92  &  1  &  1  &  1  &  2009  &  692  &  0  &  1  &  2  &  1  &  0  &  1 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
 \begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 2 generaciones}]
+
 user nginx;
 pid /var/run/nginx.pid;
 worker_processes 1;
-daemon off;
+daemon on;
 error_log /var/log/nginx/error.log warn;
 events {
-    worker_connections 830;
+    worker_connections 1324;
 }
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
     access_log /var/log/nginx/access.log;
     sendfile on;
-    keepalive_timeout 36;
-    disable_symlinks off;
+    keepalive_timeout 92;
+    disable_symlinks on;
     autoindex on;
     send_timeout 1;
-    large_client_header_buffers 4 565;
-    client_max_body_size 1225728;
-    server_tokens on;
+    large_client_header_buffers 4 2009;
+    client_max_body_size 708608;
+    server_tokens off;
     gzip on;
     server {
         server_name www.exampletfm.com;
@@ -151,99 +128,72 @@ http {
             root /usr/share/nginx/html;
             index index.html index.htm;
             add_header X-Frame-Options: DENY;
-            add_header X-Powered-By: nginx/1.16.0;
-            add_header X-Content-Type-Options: "";
+            add_header X-Powered-By: PHP/5.6.8;
+            add_header X-Content-Type-Options: nosniff;
             add_header Server: caddy;
         }
     }
 }
 \end{lstlisting}
 
-\subsection{Resultados tras 30 generaciones}
-
-Se han generado 20 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 30 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
-
+\subsection{Población de 10 individuos durante 5 generaciones}
+Resultados para una población de 10 individuos durante 5 generaciones:
+Población inicial:
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
 \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
-702        & 19         & 0          & 1          & 1          & 1813       & 818        & 1          & 1          & 2           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
-1343       & 44         & 1          & 1          & 1          & 1582       & 976        & 1          & 0          & 0           & 3           & 0           & 0           \\ \hline
-915        & 90         & 1          & 1          & 0          & 1103       & 1701       & 1          & 1          & {\color[HTML]{FE0000}3}           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
-1304       & 81         & 1          & 0          & 0          & 1836       & 1345       & 0          & 1          & 1           & 3           & 0           & 0           \\ \hline
-887        & 78         & 1          & 0          & 0          & 756        & 1815       & 1          & 1          & 2           & 4           & 0           & 1           \\ \hline
-574        & 11         & 0          & 1          & 1          & 1143       & 761        & 0          & 1          & 1           & 2           & 1           & 0           \\ \hline
-808        & 58         & 0          & 1          & 1          & 1234       & 1534       & 0          & 1          & 2           & 2           & 1           & 1           \\ \hline
-1673       & 85         & 0          & 1          & 1          & 1031       & 1523       & 1          & 0          & 1           & 3           & 1           & 1           \\ \hline
-1100       & 41         & 1          & 0          & 0          & 1130       & 916        & 1          & 1          & {\color[HTML]{FE0000}3}           & 3           & 1           & 1           \\ \hline
-1388       & 84         & 1          & 1          & 0          & 1880       & 1430       & 1          & 1          & 2           & 1           & 1           & 0           \\ \hline
-1405       & 91         & 1          & 0          & 0          & 1745       & 1115       & 1          & 0          & 2           & 4           & 0           & 2           \\ \hline
-1044       & 66         & 1          & 0          & 1          & 1450       & 707        & 1          & 0          & 2           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
-1135       & 54         & 1          & 0          & 1          & 779        & 1764       & 0          & 1          & 1           & {\color[HTML]{FE0000}5}           & 0           & 0           \\ \hline
-1512       & 28         & 0          & 1          & 1          & 670        & 1118       & 1          & 0          & {\color[HTML]{FE0000}3}           & 2           & 1           & 0           \\ \hline
-1539       & 51         & 0          & 1          & 1          & 1750       & 1446       & 0          & 0          & 1           & 0           & 1           & 2           \\ \hline
-1100       & 80         & 0          & 1          & 0          & 1562       & 904        & 0          & 1          & 2           & 0           & 0           & 1           \\ \hline
-1491       & 95         & 1          & 1          & 1          & 1639       & 1133       & 1          & 0          & 0           & {\color[HTML]{FE0000}5}           & 1           & 1           \\ \hline
-1089       & 51         & 1          & 1          & 1          & 1602       & 1699       & 1          & 0          & {\color[HTML]{FE0000}3}           & 3           & 1           & 2           \\ \hline
-917        & 35         & 0          & 1          & 1          & 907        & 1326       & 0          & 1          & 0           & {\color[HTML]{FE0000}5}           & 1           & 2           \\ \hline
-785        & 119        & 1          & 0          & 0          & 709        & 1035       & 0          & 0          & 0           & 4           & 1           & 1           \\ \hline
+808  &  90  &  1  &  0  &  1  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  0 \\ \hline
+1130  &  102  &  0  &  1  &  1  &  1347  &  1232  &  1  &  0  &  3  &  2  &  1  &  1 \\ \hline
+886  &  81  &  0  &  0  &  1  &  1860  &  1851  &  0  &  1  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+1845  &  92  &  1  &  1  &  1  &  1978  &  1661  &  1  &  0  &  3  &  0  &  0  &  1 \\ \hline
+1394  &  44  &  1  &  1  &  1  &  1986  &  975  &  0  &  1  &  0  &  3  &  0  &  1 \\ \hline
+1444  &  73  &  1  &  1  &  1  &  1364  &  1532  &  0  &  1  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+960  &  22  &  1  &  0  &  0  &  780  &  1749  &  1  &  0  &  3  &  3  &  0  &  0 \\ \hline
+1663  &  12  &  1  &  1  &  0  &  538  &  1004  &  0  &  1  &  3  &  2  &  0  &  0 \\ \hline
+877  &  18  &  1  &  0  &  1  &  972  &  1588  &  1  &  0  &  1  &  1  &  0  &  2 \\ \hline
+852  &  23  &  1  &  1  &  0  &  1881  &  1253  &  1  &  0  &  0  &  2  &  1  &  1 \\ \hline
 \end{tabular}
 \end{table}
-
-Tras la evolución hemos obtenido el siguiente resultado
-
+Población final:
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
 \hline
 \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 2 \\ \hline
-752 & 10  & 1 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 110 & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
-752 & 10  & 0 & 0 & 0 & 709 & 512 & 0 & 0 & 0 & 0 & 0 & 0 \\ \hline
+808  &  90  &  1  &  1  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  1 \\ \hline
+808  &  90  &  1  &  1  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  0 \\ \hline
+808  &  23  &  1  &  0  &  1  &  1675  &  1228  &  0  &  0  &  0  &  3  &  0  &  1 \\ \hline
+808  &  23  &  1  &  0  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  0  &  1 \\ \hline
+808  &  90  &  1  &  0  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  0 \\ \hline
+808  &  23  &  1  &  0  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  0 \\ \hline
+852  &  23  &  1  &  0  &  1  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  0 \\ \hline
+852  &  23  &  1  &  0  &  1  &  1675  &  1228  &  0  &  0  &  0  &  3  &  0  &  1 \\ \hline
+808  &  90  &  1  &  1  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  1 \\ \hline
+808  &  90  &  1  &  1  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  1 \\ \hline
 \end{tabular}
 \end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 5 generaciones}]
 
-Como podemos observar en este caso tampoco erróneas, aunque hemos perdido mucha diversidad al realizar tantas generaciones, eso sí, podemos afirmar que el algoritmo genético ha evolucionado la población hasta llegar a un estado cercano al ideal en cuanto a seguridad.
-
-\bigskip
-De esta población obtenemos la siguiente configuración de NGINX que podríamos aplicar en nuestro servidor.
-
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 30 generaciones}]
 user nginx;
 pid /var/run/nginx.pid;
 worker_processes 1;
-daemon off;
+daemon on;
 error_log /var/log/nginx/error.log warn;
 events {
-    worker_connections 752;
+    worker_connections 808;
 }
 http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
     access_log /var/log/nginx/access.log;
     sendfile on;
-    keepalive_timeout 10;
-    disable_symlinks off;
-    autoindex off;
+    keepalive_timeout 90;
+    disable_symlinks on;
+    autoindex on;
     send_timeout 0;
-    large_client_header_buffers 4 709;
-    client_max_body_size 524288;
+    large_client_header_buffers 4 1675;
+    client_max_body_size 1257472;
     server_tokens off;
     gzip off;
     server {
@@ -254,11 +204,380 @@ http {
             root /usr/share/nginx/html;
             index index.html index.htm;
             add_header X-Frame-Options: SAMEORIGIN;
+            add_header X-Powered-By: Django2.2;
+            add_header X-Content-Type-Options: "";
+            add_header Server: caddy;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Población de 20 individuos durante 20 generaciones}
+Resultados para una población de 20 individuos durante 20 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1243  &  104  &  0  &  0  &  1  &  1308  &  1083  &  1  &  1  &  0  &  1  &  0  &  1 \\ \hline
+821  &  90  &  0  &  1  &  0  &  1669  &  1685  &  1  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  1 \\ \hline
+729  &  31  &  0  &  1  &  1  &  1548  &  1278  &  1  &  0  &  1  &  1  &  0  &  2 \\ \hline
+1265  &  11  &  1  &  1  &  0  &  1906  &  1049  &  1  &  1  &  2  &  {\color[HTML]{FE0000}4}  &  0  &  2 \\ \hline
+831  &  10  &  1  &  1  &  0  &  1095  &  917  &  0  &  1  &  0  &  2  &  1  &  0 \\ \hline
+1174  &  11  &  1  &  1  &  1  &  1049  &  1728  &  0  &  0  &  1  &  1  &  1  &  0 \\ \hline
+832  &  56  &  0  &  0  &  0  &  1942  &  1548  &  1  &  0  &  3  &  2  &  1  &  1 \\ \hline
+935  &  100  &  0  &  0  &  0  &  1562  &  1395  &  0  &  0  &  1  &  0  &  1  &  1 \\ \hline
+1886  &  64  &  1  &  1  &  1  &  1533  &  1351  &  0  &  0  &  0  &  0  &  0  &  2 \\ \hline
+724  &  70  &  0  &  0  &  1  &  831  &  1710  &  0  &  1  &  2  &  3  &  1  &  1 \\ \hline
+519  &  44  &  1  &  0  &  1  &  1340  &  1555  &  1  &  0  &  2  &  0  &  1  &  1 \\ \hline
+923  &  85  &  0  &  1  &  0  &  1910  &  1432  &  0  &  0  &  1  &  2  &  0  &  0 \\ \hline
+667  &  60  &  1  &  0  &  1  &  1692  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+1959  &  15  &  0  &  1  &  1  &  1733  &  1242  &  1  &  1  &  3  &  0  &  0  &  2 \\ \hline
+765  &  32  &  0  &  0  &  0  &  1442  &  1625  &  1  &  1  &  1  &  1  &  0  &  2 \\ \hline
+1482  &  117  &  1  &  0  &  1  &  595  &  1477  &  1  &  0  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+1091  &  35  &  0  &  1  &  0  &  1389  &  2043  &  1  &  0  &  2  &  3  &  1  &  2 \\ \hline
+524  &  79  &  0  &  1  &  0  &  1019  &  1730  &  0  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  1 \\ \hline
+1499  &  10  &  0  &  0  &  1  &  1042  &  1140  &  1  &  1  &  3  &  1  &  1  &  2 \\ \hline
+966  &  12  &  1  &  0  &  0  &  1651  &  632  &  0  &  1  &  2  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+524  &  18  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+865  &  18  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  552  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  2  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  0  &  0 \\ \hline
+524  &  40  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  3  &  0  &  1  &  0 \\ \hline
+524  &  34  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  18  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+806  &  34  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  18  &  0  &  0  &  0  &  1340  &  1952  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  34  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+767  &  39  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  18  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  39  &  0  &  0  &  0  &  1340  &  552  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  34  &  0  &  0  &  0  &  1340  &  1686  &  1  &  1  &  0  &  0  &  1  &  0 \\ \hline
+524  &  18  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 20 generaciones}]
+
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon on;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 524;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 18;
+    disable_symlinks off;
+    autoindex off;
+    send_timeout 0;
+    large_client_header_buffers 4 1340;
+    client_max_body_size 1726464;
+    server_tokens off;
+    gzip on;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: SAMEORIGIN;
             add_header X-Powered-By: PHP/5.3.3;
+            add_header X-Content-Type-Options: "";
+            add_header Server: apache;
+        }
+    }
+}
+\end{lstlisting}
+
+
+\section{Cruzamiento en dos puntos}
+
+\subsection{Población de 10 individuos durante 2 generaciones}
+Resultados para una población de 10 individuos durante 2 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1997  &  107  &  0  &  1  &  0  &  1571  &  608  &  1  &  1  &  0  &  1  &  0  &  0 \\ \hline
+1879  &  23  &  1  &  1  &  0  &  1378  &  1842  &  0  &  1  &  0  &  2  &  0  &  0 \\ \hline
+1036  &  79  &  1  &  1  &  1  &  1687  &  763  &  1  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  1  &  2 \\ \hline
+1991  &  20  &  1  &  0  &  0  &  747  &  1662  &  1  &  1  &  1  &  0  &  0  &  2 \\ \hline
+1793  &  43  &  0  &  0  &  0  &  1080  &  1822  &  1  &  0  &  0  &  0  &  0  &  0 \\ \hline
+1471  &  81  &  0  &  1  &  0  &  1547  &  1390  &  1  &  0  &  2  &  {\color[HTML]{FE0000}5}  &  0  &  2 \\ \hline
+1923  &  36  &  1  &  0  &  1  &  1269  &  717  &  0  &  0  &  1  &  {\color[HTML]{FE0000}4}  &  0  &  1 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+899  &  30  &  0  &  0  &  1  &  992  &  1202  &  0  &  1  &  1  &  2  &  0  &  2 \\ \hline
+1423  &  78  &  0  &  1  &  0  &  1615  &  2027  &  0  &  0  &  0  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+899  &  34  &  0  &  0  &  1  &  634  &  1765  &  0  &  0  &  0  &  1  &  0  &  1 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  1  &  2  &  0  &  0 \\ \hline
+899  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  1  &  0  &  1  &  0  &  1 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  2  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+961  &  47  &  1  &  0  &  1  &  634  &  1765  &  0  &  0  &  3  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+899  &  30  &  0  &  0  &  1  &  992  &  1202  &  0  &  1  &  1  &  2  &  0  &  2 \\ \hline
+899  &  30  &  0  &  0  &  1  &  992  &  1202  &  0  &  1  &  0  &  1  &  0  &  1 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 2 generaciones}]
+
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon on;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 899;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 30;
+    disable_symlinks off;
+    autoindex off;
+    send_timeout 1;
+    large_client_header_buffers 4 992;
+    client_max_body_size 1230848;
+    server_tokens off;
+    gzip on;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: SAMEORIGIN;
+            add_header X-Powered-By: PHP/5.6.8;
+            add_header X-Content-Type-Options: nosniff;
+            add_header Server: caddy;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Población de 10 individuos durante 5 generaciones}
+Resultados para una población de 10 individuos durante 5 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+2008  &  57  &  1  &  1  &  0  &  1008  &  1736  &  1  &  0  &  2  &  3  &  0  &  0 \\ \hline
+2036  &  115  &  1  &  1  &  0  &  715  &  1646  &  0  &  0  &  0  &  3  &  0  &  2 \\ \hline
+806  &  10  &  0  &  0  &  1  &  763  &  1061  &  0  &  1  &  0  &  0  &  1  &  2 \\ \hline
+1184  &  19  &  0  &  0  &  0  &  687  &  1944  &  0  &  0  &  0  &  3  &  1  &  2 \\ \hline
+1244  &  100  &  0  &  0  &  1  &  1930  &  1088  &  0  &  0  &  0  &  1  &  0  &  2 \\ \hline
+1498  &  46  &  0  &  1  &  0  &  819  &  1391  &  0  &  0  &  1  &  1  &  0  &  2 \\ \hline
+2037  &  120  &  1  &  1  &  1  &  1137  &  1059  &  1  &  0  &  2  &  2  &  0  &  1 \\ \hline
+1171  &  118  &  0  &  0  &  1  &  1564  &  569  &  0  &  1  &  1  &  {\color[HTML]{FE0000}4}  &  1  &  2 \\ \hline
+714  &  120  &  1  &  0  &  0  &  1282  &  1579  &  0  &  1  &  2  &  1  &  1  &  2 \\ \hline
+1710  &  87  &  0  &  0  &  0  &  654  &  529  &  0  &  0  &  2  &  1  &  1  &  2 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+714  &  120  &  0  &  0  &  0  &  687  &  1944  &  1  &  1  &  2  &  1  &  1  &  2 \\ \hline
+714  &  43  &  0  &  0  &  0  &  1282  &  1944  &  0  &  0  &  2  &  1  &  1  &  0 \\ \hline
+714  &  43  &  0  &  0  &  0  &  1282  &  1944  &  1  &  0  &  2  &  1  &  1  &  2 \\ \hline
+714  &  120  &  0  &  0  &  0  &  1282  &  1579  &  0  &  1  &  1  &  1  &  1  &  0 \\ \hline
+714  &  120  &  0  &  0  &  0  &  687  &  1579  &  1  &  1  &  2  &  1  &  1  &  2 \\ \hline
+714  &  120  &  0  &  0  &  0  &  1282  &  1579  &  0  &  1  &  2  &  1  &  1  &  0 \\ \hline
+714  &  120  &  0  &  0  &  0  &  687  &  1944  &  1  &  1  &  2  &  1  &  1  &  2 \\ \hline
+714  &  43  &  0  &  0  &  0  &  1282  &  1579  &  0  &  0  &  2  &  1  &  1  &  2 \\ \hline
+714  &  120  &  1  &  0  &  1  &  687  &  1944  &  1  &  0  &  2  &  1  &  1  &  2 \\ \hline
+714  &  120  &  0  &  0  &  0  &  1282  &  1579  &  0  &  1  &  2  &  1  &  1  &  2 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 5 generaciones}]
+
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon on;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 714;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 120;
+    disable_symlinks off;
+    autoindex off;
+    send_timeout 0;
+    large_client_header_buffers 4 1282;
+    client_max_body_size 1616896;
+    server_tokens off;
+    gzip on;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: DENY;
+            add_header X-Powered-By: PHP/5.6.8;
+            add_header X-Content-Type-Options: "";
+            add_header Server: nginx/1.16.0;
+        }
+    }
+}
+\end{lstlisting}
+
+\subsection{Población de 20 individuos durante 20 generaciones}
+Resultados para una población de 20 individuos durante 20 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1677  &  14  &  0  &  1  &  0  &  804  &  1001  &  1  &  0  &  0  &  0  &  0  &  0 \\ \hline
+1591  &  95  &  1  &  1  &  0  &  550  &  1731  &  0  &  0  &  1  &  0  &  0  &  2 \\ \hline
+776  &  110  &  1  &  0  &  1  &  1205  &  1182  &  1  &  0  &  3  &  3  &  1  &  0 \\ \hline
+1200  &  71  &  1  &  1  &  1  &  1903  &  1979  &  1  &  1  &  1  &  2  &  0  &  1 \\ \hline
+1961  &  28  &  0  &  0  &  1  &  1211  &  1485  &  1  &  1  &  0  &  {\color[HTML]{FE0000}4}  &  0  &  2 \\ \hline
+942  &  10  &  0  &  1  &  1  &  1446  &  1525  &  1  &  0  &  0  &  1  &  0  &  1 \\ \hline
+537  &  48  &  1  &  0  &  1  &  1358  &  1930  &  1  &  0  &  3  &  1  &  1  &  1 \\ \hline
+1105  &  10  &  1  &  0  &  0  &  571  &  1297  &  0  &  1  &  0  &  3  &  1  &  2 \\ \hline
+1331  &  84  &  1  &  0  &  0  &  748  &  1126  &  0  &  0  &  2  &  {\color[HTML]{FE0000}5}  &  1  &  2 \\ \hline
+2017  &  112  &  1  &  1  &  0  &  910  &  737  &  1  &  1  &  3  &  2  &  1  &  1 \\ \hline
+770  &  96  &  0  &  0  &  1  &  1257  &  1804  &  1  &  1  &  1  &  3  &  0  &  1 \\ \hline
+1569  &  104  &  1  &  1  &  1  &  713  &  671  &  0  &  0  &  0  &  3  &  0  &  1 \\ \hline
+1280  &  120  &  1  &  1  &  1  &  1461  &  1404  &  1  &  1  &  0  &  1  &  0  &  1 \\ \hline
+898  &  92  &  1  &  0  &  0  &  1943  &  1409  &  1  &  1  &  0  &  1  &  1  &  1 \\ \hline
+1632  &  70  &  1  &  0  &  0  &  1821  &  1836  &  1  &  0  &  1  &  {\color[HTML]{FE0000}5}  &  0  &  1 \\ \hline
+982  &  36  &  0  &  1  &  1  &  1462  &  1446  &  1  &  0  &  1  &  1  &  1  &  2 \\ \hline
+1843  &  118  &  0  &  0  &  1  &  697  &  828  &  1  &  0  &  1  &  {\color[HTML]{FE0000}4}  &  0  &  0 \\ \hline
+782  &  109  &  1  &  0  &  1  &  524  &  1928  &  1  &  1  &  1  &  {\color[HTML]{FE0000}4}  &  1  &  2 \\ \hline
+1779  &  10  &  1  &  0  &  0  &  1627  &  1315  &  1  &  1  &  1  &  1  &  0  &  2 \\ \hline
+1927  &  21  &  1  &  0  &  0  &  771  &  576  &  1  &  1  &  2  &  2  &  1  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  1  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  1  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  1285  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  1430  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  1  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  1028  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  994  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 20 generaciones}]
+
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon on;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 537;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 10;
+    disable_symlinks off;
+    autoindex off;
+    send_timeout 0;
+    large_client_header_buffers 4 571;
+    client_max_body_size 869376;
+    server_tokens off;
+    gzip off;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: SAMEORIGIN;
+            add_header X-Powered-By: Django2.2;
             add_header X-Content-Type-Options: nosniff;
             add_header Server: apache;
         }
     }
 }
 \end{lstlisting}
+
+\section{Comentarios sobre los resultados}
+
+Como podemos observar, en las generaciones iniciales hay configuraciones correctas e incorrectas, las cuales podemos identificar porque tienen algún valor en rojo. 
+
+\bigskips
+Con tan solo 2 generaciones y con una población de 10 individuos generados aleatoriamente la población final tiene configuraciones incorrectas pero aun así el algoritmo nos devuelve la configuración del final de la lista que será la más segura de toda la población. Aun así se aprecia que con tan pocas generaciones el algoritmo no es capaz de evolucionar para descartar las configuraciones incorrectas, esta casuística se da por igual utilizando el cruzamiento por un punto y el de dos puntos.
+
+\bigskip
+Si ya pasamos a 5 generaciones manteniendo la población en 10 individuos generados aleatoriamente en ambos casos ya empieza a eliminar las configuraciones incorrectas, en ambos casos por igual aunque se aprecia que el cruce por dos puntos tiene la ventaja de proporcionar una mayor diversidad en la población.
+
+\bigskip
+Como prueba final hemos ejecutado el algoritmo durante 20 generaciones con una población de 20 individuos generados aleatoriamente vemos que, tanto con la función de cruce en un punto como con la que lo hace en dos puntos, el algoritmo descarta las configuraciones incorrectas pero en este caso, al ser tantas generaciones perdemos diversidad aunque ganamos en seguridad según el valor indicado por ZAP.
+
+\bigskip
+Tanto en 5 como en 20 generaciones el algoritmo genético ha evolucionado la población hasta llegar a un estado cercano al ideal en cuanto a seguridad.
+
+\bigskip
+Podemos afirmar que la funciona de cruzamiento en dos puntos proporciona un mejor resultado en menos generaciones, pero al aumentar el número de las mismas esta ventaja ya no se aprecia de forma tan evidente.
+
+\bigskip
+Por lo tanto, una vez decidido que la función de cruzamiento en dos puntos proporciona mejores resultaos que la que lo hace ne un único punto sólo deberíamos variar el número de generaciones dependiendo del grado de seguridad y/o diversidad que quisiéramos obtener, siendo a mas generaciones un resultado mas seguro pero menos diverso y siendo a menos generaciones un resultado mas diverso pero menos seguro.
 
