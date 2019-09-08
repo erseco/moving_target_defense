@@ -276,6 +276,13 @@ La cabecera `Server' contiene la información acerca del software usado por el s
 \bigskip
 Al igual que con la cabecera `X-Powered-By', se recomienda no dar información demasiado extensa en dicha cabecera ya que puede revelar detalles que pueden facilitar la tarea de encontrar y explotar fallos de seguridad.
 
+\section{Metodología de desarrollo}
+
+Utilizar una metodología como puede ser el desarrollo `en cascada` no es viable en un proyecto de estas características, ya que se ha ido aprendiendo como funcionaban diversas herramientas a la vez que se estaba escribiendo el código, porque lo que han habido multitud de cambios.
+
+\bigskip
+Para el desarrollo de nuestro sistema se ha optado por una metodología ágil. Concretamente nos hemos basado en la metodología `eXtreme Programming' o programación extrema. De hecho el carácter de investigación de este proyecto se amolda perfectamente a las directrices de esta metodología puesto que el software y los requisitos se han ido cambiando a medida que se iban obteniendo resultados con las distintas herramientas. 
+
 \section{Diseño de la herramienta}
 
 Para diseñar la herramienta hemos usado, como hemos mencionado anteriormente, el lenguaje de programación Python. Se han hecho uso de las librerías de código abierto \texttt{nginx-config-builder}, \texttt{ZAP API} así como \texttt{mock} para simular el comportamiento de funciones internas para conseguir una ejecución determinística de las pruebas unitarias.
@@ -315,26 +322,24 @@ Nuestra función de evaluación utilizará una combinación de estas dos herrami
 La implementación del algoritmo genético utiliza una combinación de procesos de selección, cruzamiento y mutación para mejorar la solución a través de varias generaciones.
 
 \bigskip
+El algoritmo genético responderá al segundo objetivo `comprobar si utilizar una heurística de búsqueda, como pueden ser los algoritmos genéticos, puede servir para incrementar la seguridad de un sistema a la hora de generar configuraciones' 
+
+\bigskip
 Aunque en un primero momento se planteó el uso de algún `framework' de algoritmos genéticos como puede ser \textfb{DEAP}, desarrollado en Python, pero se optó en su lugar por utilizar un algoritmo sencillo que cubría de sobra nuestras necesidades.
 
 \bigskip
 Para la realización del algoritmo genético hemos utilizado como base uno de los múltiples ejemplos que hay en Internet. Concretamente el del estupendo tutorial que podemos encontrar en la web \textfb{robologs.net} concretamente en esta URL: \url{https://robologs.net/2015/09/01/}.
 
 \bigskip
-El sistema está diseñado para lograr el objetivo del planteamiento del problema. En este diseño, se han desarrollado dos algoritmos y en total se han utilizado cuatro guiones en conjunto para lograr el objetivo. Para los experimentos se han utilizado una serie de herramientas. El algoritmo genético responderá a la parte principal del enunciado del problema "Cómo reforzar las vulnerabilidades de seguridad causadas por la mala configuración humana o por una cadena de configuración inadecuada". El componente y las herramientas se discuten en este capítulo. El segundo algoritmo es puntuar la idoneidad de las soluciones.
+El sistema está diseñado para lograr el objetivo del planteamiento del problema. En este diseño, se han desarrollado dos algoritmos de cruzamiento (\textit{crossover}), uno donde cruza a dos individuos mediante un sólo punto de cruce y otro donde se utilizan dos puntos de cruce. 
 
 \bigskip
-El algoritmo genético se encarga de llamar a los anteriores scripts para generar soluciones de seguridad. En primer lugar, inicializa las soluciones aleatorias, que luego pasan por los procesos de selección, que se describen en detalle más adelante en este capítulo. El algoritmo genético depende de la puntuación de aptitud de cada solución para ir más allá en el proceso de selección, lo que significa que es responsabilidad del algoritmo de puntuación de aptitud dar puntuaciones para las soluciones y enviarlas más allá del algoritmo genético.
+El algoritmo genético se encarga de llamar a los anteriores \texttt{scripts} para generar soluciones de seguridad. En primer lugar, inicializa las soluciones aleatorias, que luego pasan por los procesos de selección, que se describen en detalle más adelante en este capítulo. El algoritmo genético depende de la puntuación de aptitud de cada solución para ir más allá en el proceso de selección, lo que significa que es responsabilidad del algoritmo de puntuación de aptitud dar puntuaciones para las soluciones y enviarlas más allá del algoritmo genético.
 
 \bigskip
-El algoritmo de puntuación (fitness.py \ref{fitness.py}) será el responsable de proporcionar al algoritmo genético las puntuaciones de fitness de las soluciones de seguridad. El sistema de puntuación se basa en las preferencias previas de STIG, que proporciona las vulnerabilidades, que será devuelto como un valor escalar dado por ZAP.
-
-\section{Metodología de desarrollo}
-
-Utilizar una metodología como puede ser el desarrollo `en cascada` no es viable en un proyecto de estas características, ya que se ha ido aprendiendo como funcionaban diversas herramientas a la vez que se estaba escribiendo el código, porque lo que han habido multitud de cambios.
+El algoritmo de puntuación (fitness.py \ref{fitness.py}) será el responsable de proporcionar al algoritmo genético las puntuaciones de fitness de las soluciones de seguridad. El sistema de puntuación se basa en las preferencias previas de STIG, que proporciona las vulnerabilidades, que será devuelto como un valor escalar dado por ZAP. Este valor escalar será un entero que puede ir de 0 a 999, siendo 0 una configuración sin ninguna vulnerabilidad y 999 una configuración incorrecta.
 
 \bigskip
-Para el desarrollo de nuestro sistema se ha optado por una metodología ágil. Concretamente nos hemos basado en la metodología `eXtreme Programming' o programación extrema. De hecho el carácter de investigación de este proyecto se amolda perfectamente a las directrices de esta metodología puesto que el software y los requisitos se han ido cambiando a medida que se iban obteniendo resultados con las distintas herramientas. 
-
+Básicamente el algoritmo crea una población de `n' individuos aleatorios definidos en la variable `individuals', y durante `i' generaciones, definidas en la variable `generations', los va seleccionado, cruzando y mutando. Para seleccionarlos lo que hace es otorgar una puntuación escalar con el algoritmo de fitness y ordenar la población de forma inversa, dejando al final de la lista los valores con menor fitness, pues son los que menor número de vulnerabilidades ha dado ZAP. Entonces se sustituyen los primeros elementos de la lista por el cruce de dos individuos aleatorios situados entre el final y el indicado por el valor `pressure' que siempre deberá ser al menos mayor que 2 para darle mayor diversidad. Entonces se mutan los elementos con una probabilidad definida en la variable `mutation_chance' y se vuelve a lanzar el algoritmo hasta que no queden generaciones. Al finalizar el algoritmo seleccionaremos el último elemento de la lista de la población evolucionada como el mejor de todos.
 
 

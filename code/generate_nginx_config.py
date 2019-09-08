@@ -41,6 +41,14 @@ def set_directive_int(chromosome):
 
 
 def set_directive_list(chromosome, list):
+
+    try:
+        a = list[chromosome]
+    except:
+        print("ERRORAZO")
+        print(chromosome)
+        print(list)
+
     return list[chromosome]
 
 

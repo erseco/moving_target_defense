@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    This is the main genetic algorythm based on the sample
+    This is the main genetic algorithm based on the sample
     code of TR4NSDUC7OR for an article in robologs.net
 """
 __author__ = "Ernesto Serrano"
@@ -12,15 +12,15 @@ from fitness import *
 from generate_nginx_config import *
 
 genes = 13  # The length of each individual's genetic material
-individuals = 20  # The number of individuals in the population
+individuals = 10  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
 mutation_chance = 0.4  # The probability that an individual mutates
-generations = 30  # The number of generations that we will evolve
+generations = 5  # The number of generations that we will evolve
 
 
 def individual():
     """
-        Create a random individual using the funtion defined in our
+        Create a random individual using the function defined in our
         NGINX generator
     """
     return generate_random_config()
@@ -47,7 +47,8 @@ def crossover_one_point(individual1, individual2):
 
     # A random crosspoint is chosen to make the exchange
     crosspoint = random.randint(1, genes - 1)
-    return individual1[crosspoint:] + individual2[:crosspoint]
+
+    return individual2[:crosspoint] + individual1[crosspoint:]
 
 
 def crossover_two_points(individual1, individual2):
@@ -55,7 +56,7 @@ def crossover_two_points(individual1, individual2):
         Executes a two-point crossover on the input individuals.
     """
 
-    # Two random crosspoints is chosen to make the exchange
+    # Two random cross points is chosen to make the exchange
     crosspoint1 = random.randint(1, genes - 3)
     crosspoint2 = random.randint(crosspoint1, genes - 1)
 
@@ -81,8 +82,8 @@ def selection_and_reproduction(population):
         parent = random.sample(selected, 2)  # Two parents are selected
 
         # Genetic material from parents is mixed into the new individual
-        # population[i] = crossover_one_point(parent[0], parent[1])
-        population[i] = crossover_two_points(parent[0], parent[1])
+        population[i] = crossover_one_point(parent[0], parent[1])
+        # population[i] = crossover_two_points(parent[0], parent[1])
 
     return population  # The array now has a new population of individuals, which are returned.
 
@@ -124,5 +125,5 @@ if __name__ == "__main__":
     pprint(population)  # The evolved population is shown
 
     print("")
-    print("Print a random population element as NGINX configuration:")
-    print(generate(random.choice(population)))
+    print("Print the last population element as NGINX configuration:")
+    print(generate(population[len(population) - 1]))

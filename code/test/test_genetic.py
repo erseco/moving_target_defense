@@ -69,7 +69,7 @@ def test_crossover_one_point_6(function):
     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    expected_result = [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+    expected_result = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
     result = genetic.crossover_one_point(individual1, individual2)
     assert(result == expected_result)
 
@@ -80,7 +80,7 @@ def test_crossover_one_point_10(function):
     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    expected_result = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    expected_result = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
     result = genetic.crossover_one_point(individual1, individual2)
     assert(result == expected_result)
 
@@ -91,7 +91,7 @@ def test_crossover_one_point_11(function):
     individual1 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     individual2 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    expected_result = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    expected_result = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
     result = genetic.crossover_one_point(individual1, individual2)
     assert(result == expected_result)
 

@@ -4,7 +4,7 @@ En este capítulo pasamos a detallar los resultados de todos y cada uno de los t
 
 \section{Análisis inicial del sistema}
 
-Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en la figura \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente.
+Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en la figura \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente. En este caso concreto la configuración es claramente errónea porque ha seleccionado elementos que harían que NGINX no pudiera ni siquiera inicializarse.
 
 \begin{lstlisting}[label={lst:nginx_config_random},caption={Ejemplo de configuración aleatoria de NGINX}]
 user nginx;
@@ -49,9 +49,14 @@ Los cromosomas representan una combinación de configuraciones que tiene un tama
 \bigskip
 Para validar que nuestros datos son correctos se han introducido algunos errores en la configuración de forma intencional. Las cabeceras `X-Frame-Options' y `X-Powered-By' contienen unos valores incorrectos al final, por lo que el gen 10 nunca podrá tener un valor de 3, asimismo el gen 11 nunca podrá tener un valor de 5. Con esto nos aseguramos que efectivamente las configuraciones incorrectas nunca serán dadas por válidas.
 
-\section{Resultados tras 2 generaciones}
+\bigskip
+A continuación pasamos a ejecutar nuestras pruebas utilizando diferentes valores y utilizando dos funciones de cruce distintas. Una funciona de cruzamiento lo hará en un único punto aleatorio y el otro lo hará en dos.
 
-Se han generado 20 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 2 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
+\section{Cruzamiento en un único punto}
+
+\subsection{Resultados tras 2 generaciones}
+
+Se han generado 10 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 5 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
@@ -154,7 +159,7 @@ http {
 }
 \end{lstlisting}
 
-\section{Resultados tras 30 generaciones}
+\subsection{Resultados tras 30 generaciones}
 
 Se han generado 20 individuos de forma aleatoria y se ha ejecutado el algoritmo genético durante 30 generaciones, podemos ver que hay configuraciones incorrectas (en rojo).
 
