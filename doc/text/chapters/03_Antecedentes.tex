@@ -9,11 +9,11 @@ Como ya vimos en la introducción, diversos estudios aseguran que es posible inc
 A pesar de las multiples aproximaciones teóricas \cite{schlenker_deceiving_2018} \cite{champagne_genetic_2018}, actualmente no existe ninguna herramienta, ni ningún ejemplo liberado de forma pública que permita comprobar y generar configuraciones e ir evolucionando las mismas para mejorar tanto su seguridad como su diversidad por lo que se ha optado por la realización de una herramienta capaz de realizar esto.
 
 \bigskip
-Para el análisis y cuantificación de vulnerabilidades si existe herramientas, además algunas de ellas liberadas con licencias abiertas. Hemos optado por OWASP ZAP ya que es uno de las herramientas de análisis de vulnerabilidades más utilizadas y además está liberada bajo la licencia `GPLv3' \cite{free_software_foundation_gnu_2007}.
+Para el análisis y cuantificación de vulnerabilidades si existe herramientas, además algunas de ellas liberadas con licencias abiertas. Hemos optado por OWASP ZAP ya que es uno de las herramientas de análisis de vulnerabilidades más utilizadas y además está liberada bajo la licencia GPLv3 \cite{free_software_foundation_gnu_2007}.
 
 \section {Protocolos y/o servidores de red}
 
-En esta sección analizaremos algunos de los protocolos de red más conocidos así como algunas de sus implementaciones. Ateniéndonos a la filosofía abierta de este proyecto nos limitaremos a las implementaciones libres de los mismos, además, diversas publicaciones demuestran que el software de código abierto es mas seguro que el software cerrado \cite{clark_is_2009}.
+En esta sección analizaremos algunos de los protocolos de red más conocidos así como algunas de sus implementaciones. Ateniéndonos a la filosofía abierta de este proyecto nos limitaremos a las implementaciones libres de los mismos, además, diversas publicaciones demuestran que el software de código abierto es mas seguro que el software cerrado \cite{walia_comparative_2006} \cite{mansfield-devine_open_2008} \cite{clark_is_2009}.
 
 \subsection {SMB - Server Message Block}
 
@@ -23,7 +23,7 @@ Es un protocolo de red desarrollado por IBM a principios de la década de los 90
 Debido a la cantidad de sistemas compatibles es uno de los protocolos más utilizados para compartir ficheros en redes empresariales, esto hace que sea uno de los objetivos principales de muchos ciberataques.
 
 \bigskip
-Por poner un ejemplo, en mayo de 2017 hubo un ciberataque masivo causado por el ransomware WannaCry \cite{sarabia_mayor_2017}, dicho software hacía uso de un exploit conocido como EternalBlue que conseguía penetrar en sistemas que todavía hacían uso de los protocolos SMB1 y SMB2 obligando a MicroSoft a publicar parches incluso para sistemas operativos que habían terminado su ciclo de vida (Windows XP y Windows Vista).
+Por poner un ejemplo, en mayo de 2017 hubo un ciberataque masivo causado por el ransomware WannaCry \cite{sarabia_mayor_2017}, dicho software hacía uso de un \textit{exploit} conocido como EternalBlue que conseguía penetrar en sistemas que todavía hacían uso de los protocolos SMB1 y SMB2 obligando a MicroSoft a publicar parches incluso para sistemas operativos que habían terminado su ciclo de vida (Windows XP y Windows Vista).
 
 
 \subsubsection {Implementaciones libres}
@@ -40,7 +40,7 @@ Sitio Web                & \url{https://www.samba.org} 	\\ \hline
 \caption{Ficha técnica Samba}
 \end{table}
 
-Samba es una implementación libre del protocolo de compartición de archivos de Microsoft desarrollado originalmente para Unix por Andrew Tridgell utilizando técnicas de ingeniería inversa para averiguar el funcionamiento del protocolo. Aunque sigue siendo un protocolo propietario a partir de la versión 2.0 (2006) Microsoft comenzó a publicar las especificaciones del protocolo SMB para permitir la interoperatibilidad entre diferentes sistemas operativos.
+Samba es una implementación libre del protocolo usado para compartir archivos de Microsoft desarrollado originalmente para Unix por Andrew Tridgell utilizando técnicas de ingeniería inversa para averiguar el funcionamiento del protocolo. Aunque sigue siendo un protocolo propietario a partir de la versión 2.0 (2006) Microsoft comenzó a publicar las especificaciones del protocolo SMB para permitir la interoperatibilidad entre diferentes sistemas operativos.
 
 
 \subsection {NTP - Network Time Protocol}
