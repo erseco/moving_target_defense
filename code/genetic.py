@@ -15,7 +15,7 @@ genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
 mutation_chance = 0.4  # The probability that an individual mutates
-generations = 20  # The number of generations that we will evolve
+generations = 5  # The number of generations that we will evolve
 
 
 def individual():
@@ -168,3 +168,6 @@ if __name__ == "__main__":
 
     # Print the results
     print_results(initial_population, population)
+
+    print("Print 'crude' result data:")
+    pprint(population)

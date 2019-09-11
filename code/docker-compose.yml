@@ -15,6 +15,8 @@ services:
       - ./fitness.py:/tester/fitness.py:ro
       - ./generate_nginx_config.py:/tester/generate_nginx_config.py:ro
       - ./genetic.py:/tester/genetic.py:ro
+      - ./run.sh:/tester/run.sh:ro
+      - ./results/:/tester/results/
 
   zap:
     image: owasp/zap2docker-bare

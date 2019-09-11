@@ -559,12 +559,16 @@ http {
 }
 \end{lstlisting}
 
+\section{Resultados para 30 ejecuciones del algoritmo}
+
+Tras la ejecución y consid
+
 \section{Comentarios sobre los resultados}
 
 Como podemos observar, en las generaciones iniciales hay configuraciones correctas e incorrectas, las cuales podemos identificar porque tienen algún valor en rojo. 
 
 \bigskips
-Con tan solo 2 generaciones y con una población de 10 individuos generados aleatoriamente la población final tiene configuraciones incorrectas pero aun así el algoritmo nos devuelve la configuración del final de la lista que será la más segura de toda la población. Aun así se aprecia que con tan pocas generaciones el algoritmo no es capaz de evolucionar para descartar las configuraciones incorrectas, esta casuística se da por igual utilizando el cruzamiento por un punto y el de dos puntos.
+Con tan solo 2 generaciones y con una población de 10 individuos generados aleatoriamente la población final tiene configuraciones incorrectas pero aun así el algoritmo al ordenar la población en base al fitness nos posicionará al final de la lista la que considera la configuración más segura de toda la población. Aun así se aprecia que con tan pocas generaciones el algoritmo no es capaz de evolucionar para descartar las configuraciones incorrectas, esta casuística se da por igual utilizando el cruzamiento por un punto y el de dos puntos.
 
 \bigskip
 Si ya pasamos a 5 generaciones manteniendo la población en 10 individuos generados aleatoriamente en ambos casos ya empieza a eliminar las configuraciones incorrectas, en ambos casos por igual aunque se aprecia que el cruce por dos puntos tiene la ventaja de proporcionar una mayor diversidad en la población.
@@ -580,4 +584,5 @@ Podemos afirmar que la funciona de cruzamiento en dos puntos proporciona un mejo
 
 \bigskip
 Por lo tanto, una vez decidido que la función de cruzamiento en dos puntos proporciona mejores resultaos que la que lo hace ne un único punto sólo deberíamos variar el número de generaciones dependiendo del grado de seguridad y/o diversidad que quisiéramos obtener, siendo a mas generaciones un resultado mas seguro pero menos diverso y siendo a menos generaciones un resultado mas diverso pero menos seguro.
+
 

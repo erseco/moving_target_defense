@@ -1,0 +1,114 @@
+\subsection{Población de 20 individuos durante 5 generaciones}
+Resultados para una población de 20 individuos durante 5 generaciones:
+Población inicial:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+1853  &  103  &  1  &  0  &  1  &  891  &  1300  &  0  &  0  &  3  &  3  &  0  &  0 \\ \hline
+1405  &  32  &  0  &  1  &  1  &  1220  &  1639  &  0  &  1  &  3  &  {\color[HTML]{FE0000}4}  &  1  &  2 \\ \hline
+1756  &  86  &  1  &  0  &  0  &  1541  &  1400  &  1  &  0  &  1  &  1  &  0  &  0 \\ \hline
+1336  &  90  &  1  &  0  &  1  &  640  &  1654  &  0  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  1 \\ \hline
+1910  &  93  &  0  &  1  &  1  &  1264  &  1441  &  1  &  0  &  1  &  2  &  0  &  1 \\ \hline
+1793  &  107  &  0  &  1  &  0  &  1346  &  1861  &  1  &  0  &  3  &  2  &  1  &  2 \\ \hline
+1312  &  49  &  1  &  1  &  1  &  778  &  1073  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  2 \\ \hline
+1133  &  43  &  0  &  0  &  1  &  1460  &  1758  &  1  &  0  &  1  &  3  &  0  &  2 \\ \hline
+1628  &  76  &  1  &  0  &  0  &  1861  &  582  &  1  &  1  &  1  &  {\color[HTML]{FE0000}4}  &  1  &  1 \\ \hline
+1053  &  25  &  0  &  0  &  1  &  816  &  1545  &  1  &  0  &  2  &  3  &  0  &  2 \\ \hline
+799  &  35  &  0  &  1  &  0  &  1727  &  1816  &  0  &  0  &  0  &  1  &  0  &  2 \\ \hline
+1932  &  109  &  1  &  0  &  0  &  1364  &  1217  &  1  &  0  &  3  &  2  &  0  &  2 \\ \hline
+813  &  21  &  0  &  1  &  0  &  1858  &  676  &  1  &  1  &  0  &  1  &  0  &  2 \\ \hline
+752  &  100  &  1  &  0  &  0  &  1612  &  640  &  1  &  1  &  3  &  1  &  0  &  2 \\ \hline
+1627  &  25  &  0  &  0  &  0  &  1882  &  914  &  0  &  0  &  0  &  2  &  1  &  0 \\ \hline
+1389  &  17  &  1  &  0  &  0  &  1681  &  1914  &  0  &  0  &  0  &  {\color[HTML]{FE0000}4}  &  0  &  1 \\ \hline
+682  &  90  &  0  &  1  &  0  &  1507  &  683  &  0  &  1  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+1913  &  39  &  0  &  0  &  0  &  536  &  1732  &  0  &  1  &  0  &  3  &  0  &  2 \\ \hline
+1295  &  85  &  1  &  0  &  0  &  1218  &  773  &  0  &  0  &  0  &  {\color[HTML]{FE0000}5}  &  0  &  2 \\ \hline
+802  &  56  &  0  &  0  &  0  &  628  &  790  &  0  &  0  &  1  &  1  &  0  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Población final:
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+682  &  76  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  1  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+605  &  43  &  1  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  0  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  24  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+605  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+605  &  49  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+605  &  43  &  0  &  1  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+605  &  43  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+682  &  30  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  0  &  0 \\ \hline
+605  &  43  &  0  &  0  &  0  &  628  &  676  &  1  &  0  &  3  &  {\color[HTML]{FE0000}5}  &  1  &  0 \\ \hline
+\end{tabular}
+\end{table}
+Configuración de NGINX
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 5 generaciones}]user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon on;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 605;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 43;
+    disable_symlinks off;
+    autoindex off;
+    send_timeout 0;
+    large_client_header_buffers 4 628;
+    client_max_body_size 692224;
+    server_tokens on;
+    gzip off;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: WRONG VALUE;
+            add_header X-Powered-By: WRONG SERVER;
+            add_header X-Content-Type-Options: "";
+            add_header Server: apache;
+        }
+    }
+}
+\end{lstlisting}
+Print 'crude' result data:
+[[682, 76, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 1, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [605, 43, 1, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 0, 5, 0, 0],
+ [682, 24, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [605, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [605, 49, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [605, 43, 0, 1, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [605, 43, 0, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [682, 30, 0, 0, 0, 628, 676, 1, 0, 3, 5, 0, 0],
+ [605, 43, 0, 0, 0, 628, 676, 1, 0, 3, 5, 1, 0]]
