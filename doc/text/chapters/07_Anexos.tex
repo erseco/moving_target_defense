@@ -70,6 +70,44 @@ http {
 }
 \end{lstlisting}
 
+\begin{lstlisting}[label={lst:nginx_config_random},caption={Ejemplo de configuración aleatoria de NGINX}]
+user nginx;
+pid /var/run/nginx.pid;
+worker_processes 1;
+daemon off;
+error_log /var/log/nginx/error.log warn;
+events {
+    worker_connections 1353;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /var/log/nginx/access.log;
+    sendfile on;
+    keepalive_timeout 100;
+    disable_symlinks on;
+    autoindex on;
+    send_timeout 1;
+    large_client_header_buffers 4 1618;
+    client_max_body_size 1476608;
+    server_tokens on;
+    gzip off;
+    server {
+        server_name www.exampletfm.com;
+        listen 80;
+        error_page 500 502 503 504 /50x.html;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.htm;
+            add_header X-Frame-Options: WRONG VALUE;
+            add_header X-Powered-By: PHP/7.2.1;
+            add_header X-Content-Type-Options: nosniff;
+            add_header Server: nginx/1.16.0;
+        }
+    }
+}
+\end{lstlisting}
+
 \begin{lstlisting}[language=html, label={lst:simple_html_web},caption={Web sencilla realizada en HTML puro}]
 <!DOCTYPE html>
 <html lang="es-ES">

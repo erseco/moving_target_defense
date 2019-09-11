@@ -4,46 +4,9 @@ En este capítulo pasamos a detallar los resultados de todos y cada uno de los t
 
 \section{Análisis inicial del sistema}
 
-Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en la figura \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente. En este caso concreto la configuración es claramente errónea porque ha seleccionado elementos que harían que NGINX no pudiera ni siquiera inicializarse.
+Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en el listado ver \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente. En este caso concreto la configuración es claramente errónea porque ha seleccionado elementos que harían que NGINX no pudiera ni siquiera inicializarse.
 
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Ejemplo de configuración aleatoria de NGINX}]
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon off;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 1353;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 100;
-    disable_symlinks on;
-    autoindex on;
-    send_timeout 1;
-    large_client_header_buffers 4 1618;
-    client_max_body_size 1476608;
-    server_tokens on;
-    gzip off;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: WRONG VALUE;
-            add_header X-Powered-By: PHP/7.2.1;
-            add_header X-Content-Type-Options: nosniff;
-            add_header Server: nginx/1.16.0;
-        }
-    }
-}
-\end{lstlisting}
-
+\bigskip
 Los cromosomas representan una combinación de configuraciones que tiene un tamaño construido de acuerdo a los parámetros de las configuraciones donde un alelo o más representan un parámetro. En esta investigación, el tamaño de los cromosomas es de 13 y el total de individuos en una generación es de 20, lo que es suficiente para mantener la diversidad de los parámetros de acuerdo con el número de parámetros. El número de soluciones en una generación ha sido determinado después de muchos experimentos del algoritmo. Es posible aumentar el número de cromosomas en una generación, lo que podría aumentar la diversidad, pero eso costaría más tiempo para las pruebas.
 
 \bigskip
@@ -96,45 +59,6 @@ Población final:
 1324  &  92  &  1  &  1  &  1  &  2009  &  692  &  0  &  1  &  2  &  1  &  0  &  1 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 2 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 1324;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 92;
-    disable_symlinks on;
-    autoindex on;
-    send_timeout 1;
-    large_client_header_buffers 4 2009;
-    client_max_body_size 708608;
-    server_tokens off;
-    gzip on;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: DENY;
-            add_header X-Powered-By: PHP/5.6.8;
-            add_header X-Content-Type-Options: nosniff;
-            add_header Server: caddy;
-        }
-    }
-}
-\end{lstlisting}
 
 \subsection{Población de 10 individuos durante 5 generaciones}
 Resultados para una población de 10 individuos durante 5 generaciones:
@@ -172,45 +96,6 @@ Población final:
 808  &  90  &  1  &  1  &  0  &  1675  &  1228  &  0  &  0  &  0  &  3  &  1  &  1 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 5 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 808;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 90;
-    disable_symlinks on;
-    autoindex on;
-    send_timeout 0;
-    large_client_header_buffers 4 1675;
-    client_max_body_size 1257472;
-    server_tokens off;
-    gzip off;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: SAMEORIGIN;
-            add_header X-Powered-By: Django2.2;
-            add_header X-Content-Type-Options: "";
-            add_header Server: caddy;
-        }
-    }
-}
-\end{lstlisting}
 
 \subsection{Población de 20 individuos durante 20 generaciones}
 Resultados para una población de 20 individuos durante 20 generaciones:
@@ -268,46 +153,6 @@ Población final:
 524  &  18  &  0  &  0  &  0  &  1340  &  1686  &  0  &  1  &  0  &  0  &  1  &  0 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 20 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 524;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 18;
-    disable_symlinks off;
-    autoindex off;
-    send_timeout 0;
-    large_client_header_buffers 4 1340;
-    client_max_body_size 1726464;
-    server_tokens off;
-    gzip on;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: SAMEORIGIN;
-            add_header X-Powered-By: PHP/5.3.3;
-            add_header X-Content-Type-Options: "";
-            add_header Server: apache;
-        }
-    }
-}
-\end{lstlisting}
-
 
 \section{Cruzamiento en dos puntos}
 
@@ -347,45 +192,6 @@ Población final:
 899  &  30  &  0  &  0  &  1  &  992  &  1202  &  0  &  1  &  0  &  1  &  0  &  1 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 2 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 899;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 30;
-    disable_symlinks off;
-    autoindex off;
-    send_timeout 1;
-    large_client_header_buffers 4 992;
-    client_max_body_size 1230848;
-    server_tokens off;
-    gzip on;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: SAMEORIGIN;
-            add_header X-Powered-By: PHP/5.6.8;
-            add_header X-Content-Type-Options: nosniff;
-            add_header Server: caddy;
-        }
-    }
-}
-\end{lstlisting}
 
 \subsection{Población de 10 individuos durante 5 generaciones}
 Resultados para una población de 10 individuos durante 5 generaciones:
@@ -423,45 +229,6 @@ Población final:
 714  &  120  &  0  &  0  &  0  &  1282  &  1579  &  0  &  1  &  2  &  1  &  1  &  2 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 5 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 714;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 120;
-    disable_symlinks off;
-    autoindex off;
-    send_timeout 0;
-    large_client_header_buffers 4 1282;
-    client_max_body_size 1616896;
-    server_tokens off;
-    gzip on;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: DENY;
-            add_header X-Powered-By: PHP/5.6.8;
-            add_header X-Content-Type-Options: "";
-            add_header Server: nginx/1.16.0;
-        }
-    }
-}
-\end{lstlisting}
 
 \subsection{Población de 20 individuos durante 20 generaciones}
 Resultados para una población de 20 individuos durante 20 generaciones:
@@ -519,45 +286,6 @@ Población final:
 537  &  10  &  0  &  0  &  0  &  571  &  849  &  0  &  0  &  0  &  3  &  0  &  0 \\ \hline
 \end{tabular}
 \end{table}
-Configuración de NGINX
-\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras 20 generaciones}]
-
-user nginx;
-pid /var/run/nginx.pid;
-worker_processes 1;
-daemon on;
-error_log /var/log/nginx/error.log warn;
-events {
-    worker_connections 537;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /var/log/nginx/access.log;
-    sendfile on;
-    keepalive_timeout 10;
-    disable_symlinks off;
-    autoindex off;
-    send_timeout 0;
-    large_client_header_buffers 4 571;
-    client_max_body_size 869376;
-    server_tokens off;
-    gzip off;
-    server {
-        server_name www.exampletfm.com;
-        listen 80;
-        error_page 500 502 503 504 /50x.html;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html index.htm;
-            add_header X-Frame-Options: SAMEORIGIN;
-            add_header X-Powered-By: Django2.2;
-            add_header X-Content-Type-Options: nosniff;
-            add_header Server: apache;
-        }
-    }
-}
-\end{lstlisting}
 
 \section{Resultados para 30 ejecuciones del algoritmo}
 
