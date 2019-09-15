@@ -16,7 +16,7 @@ Mediante algoritmos evolutivos trataremos de configurar diferentes servicios de 
 
 - Memoria: [doc](../blob/master/doc/)
 <!-- - Presentación: [https://gitpitch.com/erseco/moving_target_defense](https://gitpitch.com/erseco/moving_target_defense?t=night) -->
-- Codigo: [code](../blob/master/code/)
+- Código: [code](../blob/master/code/)
 
 ### Autor: Ernesto Serrano Collado
 ### Tutor: Juan Julián Merelo Guervós
