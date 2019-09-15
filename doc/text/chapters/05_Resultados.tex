@@ -21,6 +21,29 @@ Se han generado los individuos de forma aleatoria y se ha ejecutado el algoritmo
 \bigskip
 Tras cada ejecución obtenemos una configuración de NGINX que podríamos aplicar en nuestro servidor.
 
+\bigskip
+Para facilitar la interpretación de los resultados en la siguiente tabla se adjunta una tabla con la correspondencia entre el identificador y su directiva NGINX asociada.
+
+\begin{table}[H]
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Directiva NGINX}       & \textbf{Identificador} \\ \hline
+worker\_connections            & 1                      \\ \hline
+keepalive\_timeout             & 2                      \\ \hline
+disable\_symlinks              & 3                      \\ \hline
+autoindex                      & 4                      \\ \hline
+send\_timeout                  & 5                      \\ \hline
+large\_client\_header\_buffers & 6                      \\ \hline
+client\_max\_body\_size        & 7                      \\ \hline
+server\_tokens                 & 8                      \\ \hline
+gzip                           & 9                      \\ \hline
+X-Frame-Options                & 10                     \\ \hline
+X-Powered-By                   & 11                     \\ \hline
+X-Content-Type-Options         & 12                     \\ \hline
+server                         & 13                     \\ \hline
+\end{tabular}
+\end{table}
+
 \section{Cruzamiento en un único punto}
 
 \subsection{Población de 10 individuos durante 2 generaciones}
@@ -289,7 +312,15 @@ Población final:
 
 \section{Resultados para 30 ejecuciones del algoritmo}
 
-Tras la ejecución y consid
+Se han realizado 30 ejecuciones del algoritmo utilizando el script \texttt{run.sh}, como los resultados en bruto son demasiado extensos se adjuntan junto al código fuente en la carpeta resultados. De estos datos lo que hemos extraído una muestra de la moda para ver cuales son los parámetros que el algoritmo considera que son más seguros.
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} & \textbf{9} & \textbf{10} & \textbf{11} & \textbf{12} & \textbf{13} \\ \hline
+519                          & 33                          & 0                          & 0                  & 0                      & 1632                                    & 1557                             & 0                       & 0             & 0                        & 1                     & 0                               & 2               \\ \hline
+\end{tabular}
+\end{table}
 
 \section{Comentarios sobre los resultados}
 
@@ -311,6 +342,8 @@ Tanto en 5 como en 20 generaciones el algoritmo genético ha evolucionado la pob
 Podemos afirmar que la funciona de cruzamiento en dos puntos proporciona un mejor resultado en menos generaciones, pero al aumentar el número de las mismas esta ventaja ya no se aprecia de forma tan evidente.
 
 \bigskip
-Por lo tanto, una vez decidido que la función de cruzamiento en dos puntos proporciona mejores resultaos que la que lo hace ne un único punto sólo deberíamos variar el número de generaciones dependiendo del grado de seguridad y/o diversidad que quisiéramos obtener, siendo a mas generaciones un resultado mas seguro pero menos diverso y siendo a menos generaciones un resultado mas diverso pero menos seguro.
+Por lo tanto, una vez decidido que la función de cruzamiento en dos puntos proporciona mejores resultados que la que lo hace ne un único punto sólo deberíamos variar el número de generaciones dependiendo del grado de seguridad y/o diversidad que quisiéramos obtener, siendo a mas generaciones un resultado mas seguro pero menos diverso y siendo a menos generaciones un resultado mas diverso pero menos seguro.
 
+\bigskip
+Una vez hemos deducido que 5 generaciones con una función de cruzamiento en dos puntos es la que mejor resultado nos daba hemos realizado 30 ejecuciones del algoritmo. De dichas ejecuciones hemos podido comprobar que hay directivas que, dentro de un rango, no afectan a la seguridad pero si nos proporcionan mas diversidad, en cambio hay otras directivas en las el valor siempre va a ser fijo para no generar una configuración posiblemente insegura.
 

@@ -1,6 +1,6 @@
 \chapter{Conclusiones}
 
-El objetivo de este proyecto era mejorar las soluciones de seguridad mediante el uso de algoritmos genéticos modificando los parámetros de configuración de un servidor (en este caso NGINX). El algoritmo genético se aplicó con éxito, lo que permitió que las configuraciones evolucionaran de forma diversa y segura a lo largo del tiempo.
+El objetivo de este proyecto era mejorar seguridad de un sistema mediante el uso de algoritmos genéticos modificando los parámetros de configuración de un servidor (en este caso NGINX). El algoritmo genético se aplicó con éxito, lo que permitió que las configuraciones evolucionaran de forma diversa y segura a lo largo del tiempo.
 
 \bigskip
 Algunas vulnerabilidades pueden ser causadas por una mala configuración o por una desafortunada combinación de configuraciones que es difícil que un administrador descubra manualmente debido a la gran cantidad de parámetros y a la gran cantidad de combinaciones posibles.
@@ -15,13 +15,16 @@ Gracias a esto podemos transformar nuestro servidor en un objetivo móvil cambia
 Los resultados demuestran el rendimiento del enfoque evolutivo para la gestión de configuraciones que consiste en 13 parámetros del servidor NGINX. El ataque simulado de estas configuraciones se basó en la herramienta OWASP ZAP. El algoritmo genético descubrió mejores ajustes de parámetros para los parámetros atacados en cada generación.
 
 \bigskip
-En las primeras etapas, con solo dos generaciones, la solución empezó a dar buenos resultados aunque no se podía asegurar que dichas configuraciones fueran óptimas y/o seguras aunque si diversas ya que se habían inicializado de forma aleatoria. En las últimas etapas, la mejora en seguridad fue mucho mayor que en las primeras aunque se redujo un poco la diversidad.
+En las primeras etapas, con solo dos generaciones, la solución empezó a dar buenos resultados aunque no se podía asegurar que dichas configuraciones fueran óptimas y/o seguras aunque si diversas ya que se habían inicializado de forma aleatoria. En las últimas etapas, la mejora en seguridad fue mucho mayor que en las primeras aunque fue reduciéndose la diversidad.
 
 \bigskip
 El experimento demostró que la diversidad dentro de la generación mantenía la capacidad de tener una configuración diversa de generación en generación. Cambiar la configuración de generación en generación creó un objetivo móvil que induce a error a un atacante que intenta reconocer determinados patrones en la configuración del servidor.
+
+\bigskip
+Quizá emplear un algoritmo genético para generar estas configuraciones usando un número tan pequeño de cromosomas no sea la opción más óptima, ya que este proyecto está más enfocado en la diversidad que en la seguridad, pero uno de los objetivos era comprobar si se podían utilizar los algoritmos genéticos para generar y evolucionar las configuraciones y efectivamente esto ha sido posible.
 
 \section{Trabajos futuros}
 Este proyecto se podría evolucionar añadiendo más parámetros así como variando el número de generaciones y el de la población. Debido al poco tiempo para realizar este proyecto y con el propósito de probar el concepto, este experimento incluyó tan solo 13 parámetros de los más de 700. También podría ser una mejora investigar la seguridad agregando aplicaciones web mas avanzadas o incluso con diferentes servidores HTTP como pueden ser  \texttt{Apache} o \texttt{Caddy}.
 
 \bigskip
-Apache benchmark
+Otro posible trabajo futuro sería mejorar la generación aleatoria evitando tener individuos erróneos en la población inicial, generando de esta forma una población más segura, y además utilizar algún programa de ``benchmark'' como puede ser ``Apache Benchmark'' en nuestro algoritmo de fitness para saber que ademas de segura, nuestra configuración es óptima.
