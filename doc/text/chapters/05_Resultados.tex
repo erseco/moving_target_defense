@@ -4,7 +4,7 @@ En este capítulo pasamos a detallar los resultados de todos y cada uno de los t
 
 \section{Análisis inicial del sistema}
 
-Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en el listado ver \ref{lst:ngin_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente. En este caso concreto la configuración es claramente errónea porque ha seleccionado elementos que harían que NGINX no pudiera ni siquiera inicializarse.
+Con nuestro generador de código podemos generar configuraciones aleatorias de NGINX como la que podemos ver en el listado ver \ref{lst:nginx_config_random}. Aunque como ya hemos comentado previamente esa configuración puede ser errónea o menos segura que otra configuración también generada aleatoriamente. En este caso concreto la configuración es claramente errónea porque ha seleccionado elementos que harían que NGINX no pudiera ni siquiera inicializarse.
 
 \bigskip
 Los cromosomas representan una combinación de configuraciones que tiene un tamaño construido de acuerdo a los parámetros de las configuraciones donde un alelo o más representan un parámetro. En esta investigación, el tamaño de los cromosomas es de 13 y el total de individuos en una generación es de 20, lo que es suficiente para mantener la diversidad de los parámetros de acuerdo con el número de parámetros. El número de soluciones en una generación ha sido determinado después de muchos experimentos del algoritmo. Es posible aumentar el número de cromosomas en una generación, lo que podría aumentar la diversidad, pero eso costaría más tiempo para las pruebas.

@@ -21,8 +21,7 @@ Aunque ZAP tiene una interfaz gráfica (ver \ref{fig:owasp_zap}) para nuestro pr
 
 
 \subsection{Docker}
-
-Para simular diferentes servidores de una forma rápida se ha optado por usar un sistema de virtualización ligera basada en contenedores. Para esto se ha usado \textfb{Docker} que es uno de los sistemas de virtualización ligera basada en contenedores más utilizada. Para la orquestación de los diferentes contenedores (Servidor y Analizador) se utilizará el estándar \textbf{docker-compose} que nos permite definir un conjunto de contenedores de una forma sencilla en un fichero de texto YML.
+Para simular diferentes servidores de una forma rápida se ha optado por usar un sistema de virtualización ligera basada en contenedores. Para esto se ha usado \textbf{Docker} que es uno de los sistemas de virtualización ligera basada en contenedores más utilizada. Para la orquestación de los diferentes contenedores (Servidor y Analizador) se utilizará el estándar \textbf{docker-compose} que nos permite definir un conjunto de contenedores de una forma sencilla en un fichero de texto YML.
 
 \bigskip
 La orquestación estará compuesta de dos contenedores, uno basado en \textit{Alpine Linux} en el que instalaremos el servidor que vayamos a analizar y un segundo contenedor basado en la imagen oficial de ZAP que podemos encontrar en la URL: \url{https://hub.docker.com/r/owasp/zap2docker-bare/}.
@@ -39,6 +38,9 @@ Se han seguido buenas práctias de programación como pueden ser escribir prueba
 Teniendo en cuenta la ingente cantidad de servicios de red con sus múltiples opciones de configuración se ha optado por limitar este proyecto a alterar y optimizar la configuración de un servidor HTTP, concretamente NGINX ya en los últimos años ha desbancado a Apache como el servidor HTTP  más utilizado del mundo \cite{w3techs_usage_2019}.
 
 \bigskip
+La elección del protocolo HTTP ha sido porque es el protocolo de capa de aplicación más extendido y utilizado en Internet, de hecho el estudio `Global Internet Phenomena Report' de 2018 sitúa a HTTP muy por encima de otros servicios como la VoIP, la mensajería y los servicios de juegos en línea \cite{sandvine_2018_2018}.
+
+\bigskip
 La configuración de NGINX, al igual que la de muchos otros servidores, se realiza mediante ficheros de texto plano con una sintaxis específica, la misma se puede encontrar definida en la siguiente URL: \url{http://nginx.org/en/docs/beginners_guide.html#conf_structure} y consta de múltiples directivas, podemos ver un ejemplo aquí: \ref{lst:nginx_config}.
 
 Como podemos observar un fichero de configuración de NGINX tiene diferentes directivas que se pueden configurar de diferentes maneras, tanto para optimizar como para simplemente simular una configuración distinta y así hacer creer a un atacante que hemos cambiado de servidor HTTTP o incluso de servidor físico.
@@ -51,7 +53,7 @@ Para empezar definimos un banco de pruebas para comprobar que la herramienta OWA
 A la hora de obtener una web para testear se estuvo barajando el uso de diferentes entornos web como pueden ser Galileo (Perl), WordPress (PHP), una simple web realizada en html\ref{lst:simple_html_web} e incluso una aplicación web premeditadamente vulnerable desarrollada por OWASP llamada `Juice-Shop' realizada con \textbf{Node.js} pero al final se optó por utilizar el mensaje de bienvenida de `NGINX' (ver \ref{lst:nginx_welcome_message}). La configuración estándar de NGINX con dicho mensaje nos mostraba 5 alertas \ref{lst:owas_zap_welcome_message_alerts} siendo mucho mas fácil de gestionar que las 71 que obteníamos con `Juice-Shop'.
 
 \bigskip
-Una parte muy importante para el correcto funcionamiento de OWASP ZAP fue simular un dominio, en este caso utilizamos el conocido \textfb{example.com} que es un nombre reservado por la IANA (Internet Assigned Numbers Authority) en el RFC2606 \cite{eastlake_reserved_1999}. Para hacer uso del mismo se ha optado por darle ese nombre de \textfb{host} al contenedor que levanta NGINX.
+Una parte muy importante para el correcto funcionamiento de OWASP ZAP fue simular un dominio, en este caso utilizamos el conocido \textbf{example.com} que es un nombre reservado por la IANA (Internet Assigned Numbers Authority) en el RFC2606 \cite{eastlake_reserved_1999}. Para hacer uso del mismo se ha optado por darle ese nombre de \textbf{host} al contenedor que levanta NGINX.
 
 \bigskip
 Una vez hemos generado nuestro laboratorio para pruebas y viendo que se NGINX se ejecuta correctamente pasamos a probar como va cambiando la respuestas de OWASP ZAP dependiendo de la configuración de nuestro NGINX. Para ello agregamos la cabecera \begin{verbatim}add_header X-Frame-Options "SAMEORIGIN";\end{verbatim} y ejecutamos el conjunto, dándonos 4 vulnerabilidades en lugar de las 5 anteriores. Esta prueba nos indica que efectivamente la modificación de los parámetros de NGINX puede darnos configuraciones más o menos seguras.
@@ -61,7 +63,7 @@ Una vez hemos generado nuestro laboratorio para pruebas y viendo que se NGINX se
 La última versión de NGINX (1.17.2) posee 739 directivas de configuración por lo que para simplificar nuestra tarea vamos a limitarnos a un conjunto mas pequeño de directivas (ver tabla \ref{table:apache_nginx_directives}).
 
 \bigskip
-En un primer momento pensamos en basarnos en las directivas \textfb{STIG}, pero estas directivas sólo están definidas para el servidor Apache. Por suerte al ser HTTP un estándar muchas de las directivas de Apache tienen su símil en NGINX por lo que hemos extraído un conjunto de las mas representativas y que además tuvieran su equivalente para el servidor NGINX. Las puntuaciones se basan en el sistema de puntuación CVSS de acuerdo con los resultados devueltos por ZAP con el código de prueba. También se han agregado algunas cabeceras identificativas como pueden ser la identificación del servidor (ver tabla \ref{table:ngingx_headers}) así como la directivas de compresión \texttt{gzip} para tener una mayor entropía.
+En un primer momento pensamos en basarnos en las directivas \textbf{STIG}, pero estas directivas sólo están definidas para el servidor Apache. Por suerte al ser HTTP un estándar muchas de las directivas de Apache tienen su símil en NGINX por lo que hemos extraído un conjunto de las mas representativas y que además tuvieran su equivalente para el servidor NGINX. Las puntuaciones se basan en el sistema de puntuación CVSS de acuerdo con los resultados devueltos por ZAP con el código de prueba. También se han agregado algunas cabeceras identificativas como pueden ser la identificación del servidor (ver tabla \ref{table:ngingx_headers}) así como la directivas de compresión \texttt{gzip} para tener una mayor entropía.
 
 \begin{table}[H]
 \begin{tabular}{|l|l|l|l|}
@@ -309,10 +311,10 @@ En los siguientes puntos se detallará el desarrollo de cada una de las partes d
 \subsection{Generación de configuraciones}
 
 \bigskip
-Para generar las distintas configuraciones de NGINX utilizamos la librería \textfb{nginx-config-builder} desarrollada por la empresa Linkedin y licenciada bajo la BSD. Dicha librería la podemos encontrar en \url{https://github.com/linkedin/nginx-config-builder}. Haciendo uso de esta librería desarrollamos un script \ref{generate_nginx_config.py} que en base a un cromosoma generaba una configuración, sin saber todavía si dicha configuración podía funcionar o no.
+Para generar las distintas configuraciones de NGINX utilizamos la librería \textbf{nginx-config-builder} desarrollada por la empresa Linkedin y licenciada bajo la BSD. Dicha librería la podemos encontrar en \url{https://github.com/linkedin/nginx-config-builder}. Haciendo uso de esta librería desarrollamos un script \ref{generate_nginx_config.py} que en base a un cromosoma generaba una configuración, sin saber todavía si dicha configuración podía funcionar o no.
 
 \bigskip
-El siguiente paso es conseguir saber primeramente si la configuración funciona y después saber si la misma configuración funcional es segura. Para lo primero el propio NGINX tiene una herramienta de comprobación de configuración, la podemos invocar con el comando \textfb{NGINX -t <archivo-configuracion.conf>}, dicha herramienta nos comprueba que la sintaxis del fichero de configuración sea correcto y NGINX pueda ejecutarse sin problemas. Para lo segundo configuraremos un servidor NGINX con dicha configuración y haremos uso de la herramienta ZAP, para poder hacerlo de forma dinámica y sencilla utilizaremos la potencia de Docker.
+El siguiente paso es conseguir saber primeramente si la configuración funciona y después saber si la misma configuración funcional es segura. Para lo primero el propio NGINX tiene una herramienta de comprobación de configuración, la podemos invocar con el comando \textbf{NGINX -t <archivo-configuracion.conf>}, dicha herramienta nos comprueba que la sintaxis del fichero de configuración sea correcto y NGINX pueda ejecutarse sin problemas. Para lo segundo configuraremos un servidor NGINX con dicha configuración y haremos uso de la herramienta ZAP, para poder hacerlo de forma dinámica y sencilla utilizaremos la potencia de Docker.
 
 \bigskip
 Nuestra función de evaluación utilizará una combinación de estas dos herramientas, ya que el primero nos servirá para descartar directamente las configuraciones erróneas y la segunda nos permitirá establecer la calidad de una configuración con un valor escalar.
@@ -325,10 +327,10 @@ La implementación del algoritmo genético utiliza una combinación de procesos 
 El algoritmo genético responderá al segundo objetivo `comprobar si utilizar una heurística de búsqueda, como pueden ser los algoritmos genéticos, puede servir para incrementar la seguridad de un sistema a la hora de generar configuraciones' 
 
 \bigskip
-Aunque en un primero momento se planteó el uso de algún `framework' de algoritmos genéticos como puede ser \textfb{DEAP}, desarrollado en Python, pero se optó en su lugar por utilizar un algoritmo sencillo que cubría de sobra nuestras necesidades.
+Aunque en un primero momento se planteó el uso de algún `framework' de algoritmos genéticos como puede ser \textbf{DEAP}, desarrollado en Python, pero se optó en su lugar por utilizar un algoritmo sencillo que cubría de sobra nuestras necesidades.
 
 \bigskip
-Para la realización del algoritmo genético hemos utilizado como base uno de los múltiples ejemplos que hay en Internet. Concretamente el del estupendo tutorial que podemos encontrar en la web \textfb{robologs.net} concretamente en esta URL: \url{https://robologs.net/2015/09/01/}.
+Para la realización del algoritmo genético hemos utilizado como base uno de los múltiples ejemplos que hay en Internet. Concretamente el del estupendo tutorial que podemos encontrar en la web \textbf{robologs.net} concretamente en esta URL: \url{https://robologs.net/2015/09/01/}.
 
 \bigskip
 El sistema está diseñado para lograr el objetivo del planteamiento del problema. En este diseño, se han desarrollado dos algoritmos de cruzamiento (\textit{crossover}), uno donde cruza a dos individuos mediante un sólo punto de cruce y otro donde se utilizan dos puntos de cruce. 
