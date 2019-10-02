@@ -15,7 +15,7 @@ genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
 mutation_chance = 0.4  # The probability that an individual mutates
-generations = 5  # The number of generations that we will evolve
+generations = 15  # The number of generations that we will evolve
 
 
 def individual():
@@ -23,7 +23,9 @@ def individual():
         Create a random individual using the function defined in our
         NGINX generator
     """
-    return generate_random_config()
+    config = generate_random_config()
+    # return [fitness(config), config]
+    return config
 
 
 def initialize():
@@ -71,11 +73,12 @@ def selection_and_reproduction(population):
         fill in the population (also keeping a copy of the selected individuals without the
         modify).
     """
-    scored = [(fitnes(i), i) for i in population]  # Calculates the fitness of each individual, and stores it in pairs ordered in the form (5 , [1,2,1,1,1,4,1,8,9,4,1])
-    scored = [i[1] for i in sorted(scored, reverse=True)]  # Sorts the ordered pairs and is left alone with the array of values
+    # scored = [(fitnes(i), i) for i in population]
+
+    scored = [(i[0], i[1]) for i in sorted(population, reverse=True)]  # Sorts the ordered pairs and is left alone with the array of values
     population = scored
 
-    selected = scored[(len(scored) - pressure):]  # This line selects the 'n' individuals from the end, where n is given by 'pressure'.
+    selected = scored[(len(scored[1]) - pressure):]  # This line selects the 'n' individuals from the end, where n is given by 'pressure'.
 
     # Genetic material is mixed to create new individuals
     for i in range(len(population) - pressure):
@@ -83,7 +86,9 @@ def selection_and_reproduction(population):
 
         # Genetic material from parents is mixed into the new individual
         # population[i] = crossover_one_point(parent[0], parent[1])
-        population[i] = crossover_two_points(parent[0], parent[1])
+        population[i][1] = crossover_two_points(parent[0][1], parent[1][1])
+
+        population[i][0] = fitnes(population[i][1])
 
     return population  # The array now has a new population of individuals, which are returned.
 
@@ -99,11 +104,11 @@ def mutation(population):
             new_value = generate_random_config()[gen]  # and a new value for this gen
 
             # It is important to see that the new value is not equal to the old one.
-            while new_value == population[i][gen]:
+            while new_value == population[i][1][gen]:
                 new_value = generate_random_config()[gen]
 
             # Applying mutation
-            population[i][gen] = new_value
+            population[i][1][gen] = new_value
 
     return population
 
@@ -117,20 +122,22 @@ def print_latex_table(population):
     print('\\begin{table}[H]')
     print('\\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}')
     print('\\hline')
-    print('\\textbf{1} & \\textbf{2} & \\textbf{3} & \\textbf{4} & \\textbf{5} & \\textbf{6} & \\textbf{7} & \\textbf{8} & \\textbf{9} & \\textbf{10} & \\textbf{11} & \\textbf{12} & \\textbf{13} \\\\ \\hline')
+    print('\\textbf{0} & \\textbf{1} & \\textbf{2} & \\textbf{3} & \\textbf{4} & \\textbf{5} & \\textbf{6} & \\textbf{7} & \\textbf{8} & \\textbf{9} & \\textbf{10} & \\textbf{11} & \\textbf{12} & \\textbf{13} \\\\ \\hline')
 
     for individual in population:
+
+        print("%d  &  " % individual[0], end='')
 
         for i in range(genes):
 
             if i == genes - 1:
-                print("%d \\\\ \\hline" % individual[i])
-            elif i == 10 and individual[i] > 3:
-                print("{\\color[HTML]{FE0000}%d}  &  " % individual[i], end='')
-            elif i == 11 and individual[i] > 4:
-                print("{\\color[HTML]{FE0000}%d}  &  " % individual[i], end='')
+                print("%d \\\\ \\hline" % individual[1][i])
+            elif i == 10 and individual[1][i] > 3:
+                print("{\\color[HTML]{FE0000}%d}  &  " % individual[1][i], end='')
+            elif i == 11 and individual[1][i] > 4:
+                print("{\\color[HTML]{FE0000}%d}  &  " % individual[1][i], end='')
             else:
-                print("%d  &  " % individual[i], end='')
+                print("%d  &  " % individual[1][i], end='')
 
     print('\\end{tabular}')
     print('\\end{table}')
@@ -150,7 +157,7 @@ def print_results(initial_population, last_population):
     print_latex_table(last_population)
     print("Configuración de NGINX")
     print('\\begin{lstlisting}[label={lst:nginx_config_random},caption={Configuración de NGINX tras %d generaciones}]' % generations)
-    print(generate(last_population[len(population) - 1]))
+    print(generate(last_population[len(population) - 1][1]))
     print('\\end{lstlisting}')
 
 
@@ -159,11 +166,14 @@ if __name__ == "__main__":
     # Initialize a population
     population = initialize()
 
+    population = [(fitnes(i), i) for i in population] # Calculates the fitness of each individual, and stores it in pairs ordered in the form (5 , [1,2,1,1,1,4,1,8,9,4,1])
+
     initial_population = population
 
     # Evolves the population
     for i in range(generations):
         population = selection_and_reproduction(population)
+        print_latex_table(population)
         population = mutation(population)
 
     # Print the results

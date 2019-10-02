@@ -29,7 +29,6 @@ def generate_random_config():
         random.randint(0, 5),        # X-Powered-By
         random.randint(0, 1),        # X-Content-Type-Options
         random.randint(0, 2),        # server
-        998,                         # fitness value
     ]
 
 
@@ -92,7 +91,7 @@ def generate(config=generate_random_config()):
                 EmptyBlock(add_header=['Server:', set_directive_list(config[12], ['apache', 'caddy', 'nginx/1.16.0'])]),
                 root='/usr/share/nginx/html',
                 index='index.html index.htm',
-                proxy_pass='juice-shop:3000',
+                proxy_pass='http://juice-shop:3000',
             ),
             server_name='www.exampletfm.com',
             listen=80,

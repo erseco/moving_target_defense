@@ -37,7 +37,7 @@ def calculate_fitness(config):
     # print(p.returncode)
     # print(p.stdout)
 
-    # By default return a high valu
+    # By default return a high value
     alerts = 999
 
     if p.returncode == 0:
