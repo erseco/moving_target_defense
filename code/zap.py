@@ -9,6 +9,7 @@ __email__ = "erseco@correo.ugr.es"
 import time
 from pprint import pprint
 from zapv2 import ZAPv2
+import sys
 
 # Change to match the API key set in ZAP, or use None if the API key is disabled
 apikey = None
@@ -31,36 +32,36 @@ def zap_test():
     # Give the sites tree a chance to get updated
     time.sleep(2)
 
-    print('Spidering target {}'.format(target))
+    print('Spidering target {}'.format(target), file=sys.stderr)
     scanid = zap.spider.scan(target)
     # Give the Spider a chance to start
     time.sleep(2)
     while (int(zap.spider.status(scanid)) < 100):
         # Loop until the spider has finished
-        print('Spider progress %: {}'.format(zap.spider.status(scanid)))
+        print('Spider progress %: {}'.format(zap.spider.status(scanid)), file=sys.stderr)
         time.sleep(2)
 
-    print('Spider completed')
+    print('Spider completed', file=sys.stderr)
 
-    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners())
+    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
 
     while (int(zap.pscan.records_to_scan) > 0):
-        print('Records to passive scan : {}'.format(zap.pscan.records_to_scan))
+        print('Records to passive scan : {}'.format(zap.pscan.records_to_scan), file=sys.stderr)
         time.sleep(2)
 
-    print('Passive Scan completed')
+    print('Passive Scan completed', file=sys.stderr)
 
     print('Active Scanning target {}'.format(target))
 
-    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners())
+    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
 
     scanid = zap.ascan.scan(target)
     while (int(zap.ascan.status(scanid)) < 100):
         # Loop until the scanner has finished
-        print('Scan progress %: {}'.format(zap.ascan.status(scanid)))
+        print('Scan progress %: {}'.format(zap.ascan.status(scanid)), file=sys.stderr)
         time.sleep(5)
 
-    print('Active Scan completed')
+    print('Active Scan completed', file=sys.stderr)
 
     # Report the results (for debug purposes)
     # print('Hosts: {}'.format(', '.join(zap.core.hosts)))

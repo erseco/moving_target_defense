@@ -44,7 +44,7 @@ def set_directive_list(chromosome, list):
 
     try:
         a = list[chromosome]
-    except:
+    except e:
         print("ERRORAZO")
         print(chromosome)
         print(list)
