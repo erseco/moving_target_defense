@@ -10,12 +10,25 @@ __email__ = "erseco@correo.ugr.es"
 import random
 from fitness import *
 from generate_nginx_config import *
+import click
 
 genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
 mutation_chance = 0.4  # The probability that an individual mutates
 generations = 15  # The number of generations that we will evolve
+crossover_type = 1  # The crossover type, can be 1 or 2
+mutation_type_random = True  # Set if the mutation is random or +-1
+
+
+def print_variable_info():
+    print("genes: %d" % genes)
+    print("individuals : %d" % individuals)
+    print("pressure: %d" % pressure)
+    print("mutation_chance: %d" % mutation_chance)
+    print("generations: %d" % generations)
+    print("crossover_type: %d" % crossover_type)
+    print("mutation_type_random: %d" % mutation_type_random)
 
 
 def individual():
@@ -85,8 +98,10 @@ def selection_and_reproduction(population):
         parent = random.sample(selected, 2)  # Two parents are selected
 
         # Genetic material from parents is mixed into the new individual
-        # population[i] = crossover_one_point(parent[0], parent[1])
-        population[i][1] = crossover_two_points(parent[0][1], parent[1][1])
+        if crossover_type == 1:
+            population[i] = crossover_one_point(parent[0], parent[1])
+        else:
+            population[i][1] = crossover_two_points(parent[0][1], parent[1][1])
 
         population[i][0] = fitnes(population[i][1])
 
@@ -101,11 +116,17 @@ def mutation(population):
     for i in range(len(population) - pressure):
         if random.random() <= mutation_chance:  # Every individual in the population (except the parents) has a chance to mutate.
             gen = random.randint(0, genes - 1)  # A random gen is chosen
-            new_value = generate_random_config()[gen]  # and a new value for this gen
 
-            # It is important to see that the new value is not equal to the old one.
-            while new_value == population[i][1][gen]:
-                new_value = generate_random_config()[gen]
+            if mutation_type_random:
+                new_value = generate_random_config()[gen]  # and a new value for this gen
+
+                # It is important to see that the new value is not equal to the old one.
+                while new_value == population[i][1][gen]:
+                    new_value = generate_random_config()[gen]
+
+            else:
+                # In this case we are randomly adding(+) or substracting(-) 1
+                new_value += 1 if random.random() < 0.5 else -1
 
             # Applying mutation
             population[i][1][gen] = new_value
@@ -161,7 +182,22 @@ def print_results(initial_population, last_population):
     print('\\end{lstlisting}')
 
 
-if __name__ == "__main__":
+@click.command()
+@click.option('--individuals', '-i', 'individuals_number', help='Number of individuals', default=16, prompt=True)
+@click.option('--crossover-one-point', '-1', 'crossover', help='Crossover function in one point', flag_value=1, default=True)
+@click.option('--crossover-two-points', '-2', 'crossover', help='Crossover function in two points', flag_value=2)
+@click.option('--random-mutation/--no-random-mutation', 'mutation', help='Random value mutation or +-1', default=False, prompt=True)
+def main(individuals_number, crossover, mutation):
+
+    global individuals
+    individuals = individuals_number
+    global crossover_type
+    crossover_type = crossover
+    global mutation_type_random
+    mutation_type_random = mutation
+
+    print_variable_info()
+    exit()
 
     # Initialize a population
     population = initialize()
@@ -181,3 +217,8 @@ if __name__ == "__main__":
 
     print("Print 'crude' result data:")
     pprint(population)
+
+
+if __name__ == "__main__":
+
+    main()
