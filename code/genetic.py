@@ -11,6 +11,7 @@ import random
 from fitness import *
 from generate_nginx_config import *
 import click
+from pytictoc import TicToc
 
 genes = 13  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
@@ -197,7 +198,9 @@ def main(individuals_number, crossover, mutation):
     mutation_type_random = mutation
 
     print_variable_info()
-    exit()
+
+    t = TicToc()
+    t.tic()
 
     # Initialize a population
     population = initialize()
@@ -217,6 +220,8 @@ def main(individuals_number, crossover, mutation):
 
     print("Print 'crude' result data:")
     pprint(population)
+
+    t.toc()
 
 
 if __name__ == "__main__":
