@@ -150,7 +150,8 @@ def mutate(population):
 
             else:
                 # In this case we are randomly adding(+) or substracting(-) 1
-                new_value =  1 if random.random() < 0.5 else -1
+                new_value = population[i][1][gen]
+                new_value += 1 if random.random() < 0.5 else -1
 
             # Applying mutation
             population[i][1][gen] = new_value
@@ -162,7 +163,6 @@ def print_results(initial_population, last_population):
     """
         Print the results
     """
-    print("")
     print("")
     print("Población de %d individuos durante %d generaciones" % (individuals, generations))
     print("Población inicial:")
