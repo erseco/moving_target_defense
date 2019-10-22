@@ -43,7 +43,7 @@ def zap_test():
 
     print('Spider completed', file=sys.stderr)
 
-    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
+    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners())
 
     while (int(zap.pscan.records_to_scan) > 0):
         print('Records to passive scan : {}'.format(zap.pscan.records_to_scan), file=sys.stderr)
@@ -53,7 +53,7 @@ def zap_test():
 
     print('Active Scanning target {}'.format(target))
 
-    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
+    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners())
 
     scanid = zap.ascan.scan(target)
     while (int(zap.ascan.status(scanid)) < 100):

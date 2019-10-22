@@ -53,8 +53,8 @@ def fitnes(individual):
     """
         Calculates the fitness of a specific individual.
     """
-    return random.randint(1, 99)
-    return 99
+    # return random.randint(1, 99)
+    # return 99
     return calculate_fitness(individual)
 
 
