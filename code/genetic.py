@@ -136,7 +136,6 @@ def mutate(population):
     """
     for i in range(len(population) - pressure):
         if random.random() <= mutation_chance:  # Every individual in the population (except the parents) has a chance to mutate.
-            print("muta")
             gen = random.randint(0, genes - 1)  # A random gen is chosen
 
             new_value = None
@@ -200,7 +199,6 @@ def main(individuals_number, crossover, mutation):
     # Evolves the population
     for i in range(generations):
         population = selection_and_reproduction(population)
-        pprint(population)
         population = mutate(population)
 
     # Print the results

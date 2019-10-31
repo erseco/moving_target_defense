@@ -24,5 +24,6 @@ services:
 
   zap:
     image: owasp/zap2docker-bare
+    # image: owasp/zap2docker-weekly
     command: zap.sh -daemon -port 8080 -host 0.0.0.0 -config api.disablekey=true -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
 

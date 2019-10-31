@@ -1,4 +1,4 @@
-FROM alpine:3.10 as tester
+FROM alpine:3.8 as tester
 
 WORKDIR /tester
 

@@ -33,27 +33,28 @@ def zap_test():
     time.sleep(2)
 
     print('Spidering target {}'.format(target), file=sys.stderr)
+    # scanid = zap.spider.scan(target, maxchildren="10", recurse="false", subtreeonly="true")
     scanid = zap.spider.scan(target)
     # Give the Spider a chance to start
     time.sleep(2)
     while (int(zap.spider.status(scanid)) < 100):
         # Loop until the spider has finished
-        print('Spider progress %: {}'.format(zap.spider.status(scanid)), file=sys.stderr)
+        print('Spider progress %: {}'.format(int(zap.spider.status(scanid))), file=sys.stderr)
         time.sleep(2)
 
     print('Spider completed', file=sys.stderr)
 
-    pprint('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners())
+    # print('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
 
-    while (int(zap.pscan.records_to_scan) > 0):
-        print('Records to passive scan : {}'.format(zap.pscan.records_to_scan), file=sys.stderr)
-        time.sleep(2)
+    # while (int(zap.pscan.records_to_scan) > 0):
+    #     print('Records to passive scan : {}'.format(int(zap.pscan.records_to_scan)), file=sys.stderr)
+    #     time.sleep(2)
 
-    print('Passive Scan completed', file=sys.stderr)
+    # print('Passive Scan completed', file=sys.stderr)
 
     print('Active Scanning target {}'.format(target))
 
-    pprint('Enable all scanners -> ' + zap.ascan.enable_all_scanners())
+    # print('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
 
     scanid = zap.ascan.scan(target)
     while (int(zap.ascan.status(scanid)) < 100):

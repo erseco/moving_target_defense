@@ -16,12 +16,13 @@ from subprocess import run, Popen, PIPE
 
 import tempfile
 import os
+import sys
 
 
 def calculate_fitness(config):
 
     # Force kill running NGINX processes
-    print("Killing existing NGINX processes...")
+    print("Killing existing NGINX processes...", file=sys.stderr)
     Popen(["pkill", "nginx"])
 
     nginx = generate(config)
