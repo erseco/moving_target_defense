@@ -14,7 +14,8 @@ import sys
 # Change to match the API key set in ZAP, or use None if the API key is disabled
 apikey = None
 
-proxy_host = "http://zap"
+# proxy_host = "http://zap"
+proxy_host = "http://192.168.1.40"
 proxy_port = 8080
 proxy = "%s:%s" % (proxy_host, proxy_port)
 
@@ -34,7 +35,7 @@ def zap_test():
 
     print('Spidering target {}'.format(target), file=sys.stderr)
     # scanid = zap.spider.scan(target, maxchildren="10", recurse="false", subtreeonly="true")
-    scanid = zap.spider.scan(target)
+    scanid = zap.spider.scan(target, maxchildren="20")
     # Give the Spider a chance to start
     time.sleep(2)
     while (int(zap.spider.status(scanid)) < 100):

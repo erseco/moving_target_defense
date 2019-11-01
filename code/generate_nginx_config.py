@@ -84,6 +84,14 @@ def generate(config=generate_random_config()):
         Section(
             'server',
             Location(
+                '^~ /assets/public/assets/',
+                deny='all',
+            ),
+            Location(
+                '^~ /assets/assets/',
+                deny='all',
+            ),
+            Location(
                 '/',
                 EmptyBlock(add_header=['X-Frame-Options:', set_directive_list(config[9], ['SAMEORIGIN', 'ALLOW-FROM http://www.exampletfm.com/', 'DENY', 'WRONG VALUE'])]),
                 EmptyBlock(add_header=['X-Powered-By:', set_directive_list(config[10], ['PHP/5.3.3', 'PHP/5.6.8', 'PHP/7.2.1', 'Django2.2', 'nginx/1.16.0', 'WRONG SERVER'])]),
