@@ -25,3 +25,4 @@ COPY . .
 
 # Avoid exiting this script (PID 1)
 CMD tail -f /dev/null
+# CMD python3 docker.py

@@ -43,6 +43,7 @@ def zap_test():
         time.sleep(2)
 
     print('Spider completed', file=sys.stderr)
+    zap.spider.stop_all_scans()
 
     # print('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
 
@@ -70,5 +71,8 @@ def zap_test():
     # pprint(zap.core.alerts())
 
     print("Total: %s" % len(zap.core.alerts()))
+
+    print("Stopping all scans...")
+    zap.ascan.stop_all_scans()
 
     return len(zap.core.alerts())
