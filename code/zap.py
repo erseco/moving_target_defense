@@ -14,8 +14,7 @@ import sys
 # Change to match the API key set in ZAP, or use None if the API key is disabled
 apikey = None
 
-# proxy_host = "http://zap"
-proxy_host = "http://192.168.1.40"
+proxy_host = "http://zap"
 proxy_port = 8080
 proxy = "%s:%s" % (proxy_host, proxy_port)
 
@@ -48,15 +47,15 @@ def zap_test():
 
     # print('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
 
-    # while (int(zap.pscan.records_to_scan) > 0):
-    #     print('Records to passive scan : {}'.format(int(zap.pscan.records_to_scan)), file=sys.stderr)
-    #     time.sleep(2)
+    while (int(zap.pscan.records_to_scan) > 0):
+        print('Records to passive scan : {}'.format(int(zap.pscan.records_to_scan)), file=sys.stderr)
+        time.sleep(2)
 
-    # print('Passive Scan completed', file=sys.stderr)
+    print('Passive Scan completed', file=sys.stderr)
 
     print('Active Scanning target {}'.format(target))
 
-    # print('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
+    print('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
 
     scanid = zap.ascan.scan(target)
     while (int(zap.ascan.status(scanid)) < 100):

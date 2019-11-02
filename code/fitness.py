@@ -18,12 +18,22 @@ import tempfile
 import os
 import sys
 
+import signal
+
+
+def check_kill_process(pstring):
+    for line in os.popen("ps ax | grep " + pstring + " | grep -v grep"):
+        fields = line.split()
+        pid = fields[0]
+        os.kill(int(pid), signal.SIGKILL)
+
 
 def calculate_fitness(config):
 
     # Force kill running NGINX processes
     print("Killing existing NGINX processes...", file=sys.stderr)
     Popen(["pkill", "nginx"])
+    check_kill_process("nginx")
 
     nginx = generate(config)
 
