@@ -26,7 +26,7 @@ def zap_test():
     zap = ZAPv2(apikey=apikey, proxies={'http': proxy})
 
     # Proxy a request to the target so that ZAP has something to deal with
-    print('Accessing target {}'.format(target))
+    print('Accessing target {}'.format(target), file=sys.stderr)
     # zap.urlopen(target)
     zap.core.access_url(url=target, followredirects=True)
     # Give the sites tree a chance to get updated
@@ -53,7 +53,7 @@ def zap_test():
 
     print('Passive Scan completed', file=sys.stderr)
 
-    print('Active Scanning target {}'.format(target))
+    print('Active Scanning target {}'.format(target), file=sys.stderr)
 
     print('Enable all scanners -> ' + zap.ascan.enable_all_scanners(), file=sys.stderr)
 
@@ -70,9 +70,9 @@ def zap_test():
     # print('Alerts: ')
     # pprint(zap.core.alerts())
 
-    print("Total: %s" % len(zap.core.alerts()))
+    print("Total: %s" % len(zap.core.alerts()), file=sys.stderr)
 
-    print("Stopping all scans...")
+    print("Stopping all scans...", file=sys.stderr)
     zap.ascan.stop_all_scans()
 
     return len(zap.core.alerts())
