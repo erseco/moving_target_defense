@@ -17,6 +17,7 @@ from subprocess import run, Popen, PIPE
 import tempfile
 import os
 import sys
+import time
 
 import signal
 
@@ -31,9 +32,15 @@ def check_kill_process(pstring):
 def calculate_fitness(config):
 
     # Force kill running NGINX processes
-    print("Killing existing NGINX processes...", file=sys.stderr)
-    Popen(["pkill", "nginx"])
-    check_kill_process("nginx")
+    try:
+        print("Killing existing NGINX processes...", file=sys.stderr)
+        time.sleep(1)
+        Popen(["pkill", "nginx"])
+        time.sleep(1)
+        check_kill_process("nginx")
+        time.sleep(1)
+    except Exception as e:
+        time.sleep(1)
 
     nginx = generate(config)
 
