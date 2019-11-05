@@ -9,10 +9,10 @@ export INDIVIDUALS=$2
 for i in `seq $1` ; do
 	echo "Running $i execution..."
     
-    python3 genetic.py --individuals $INDIVIDUALS --crossover-one-point --random-mutation > results/results_${INDIVIDUALS}_1_random_$i.txt
-	python3 genetic.py --individuals $INDIVIDUALS --crossover-one-point --no-random-mutation > results/results_${INDIVIDUALS}_1_one_$i.txt
-	python3 genetic.py --individuals $INDIVIDUALS --crossover-two-points --random-mutation > results/results_${INDIVIDUALS}_2_random_$i.txt
-	python3 genetic.py --individuals $INDIVIDUALS --crossover-two-points --no-random-mutation  > results/results_${INDIVIDUALS}_2_one_$i.txt
+    python3 genetic.py --individuals ${INDIVIDUALS} --crossover-one-point --random-mutation > results/results_${INDIVIDUALS}_1_random_$i.txt
+	python3 genetic.py --individuals ${INDIVIDUALS} --crossover-one-point --no-random-mutation > results/results_${INDIVIDUALS}_1_one_$i.txt
+	python3 genetic.py --individuals ${INDIVIDUALS} --crossover-two-points --random-mutation > results/results_${INDIVIDUALS}_2_random_$i.txt
+	python3 genetic.py --individuals ${INDIVIDUALS} --crossover-two-points --no-random-mutation  > results/results_${INDIVIDUALS}_2_one_$i.txt
 
 done
 echo "Finised!"
