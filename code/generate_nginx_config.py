@@ -29,6 +29,8 @@ def generate_random_config():
         random.randint(0, 5),        # X-Powered-By
         random.randint(0, 1),        # X-Content-Type-Options
         random.randint(0, 2),        # server
+        random.randint(0, 2),        # xss
+        random.randint(0, 2),        # content-policy
     ]
 
 
@@ -77,6 +79,8 @@ def generate(config=generate_random_config()):
         client_max_body_size=set_directive_int(config[6]) * 1024,
         server_tokens=set_directive_on_off(config[7]),
         gzip=set_directive_on_off(config[8]),
+        log_format='my_tracking $request_body',
+        resolver='8.8.8.8 valid=30s',
 
     )
 
@@ -92,12 +96,22 @@ def generate(config=generate_random_config()):
             #     deny='all',
             # ),
             Location(
+                '/form',
+                EmptyBlock(access_log=['/var/log/access.log', 'my_tracking']),
+                # duplicate_options('return'=['200']),
+            ),
+            Location(
                 '/',
-                EmptyBlock(add_header=['X-Frame-Options:', set_directive_list(config[9], ['SAMEORIGIN', 'ALLOW-FROM http://www.exampletfm.com/', 'DENY', 'WRONG VALUE'])]),
+                EmptyBlock(add_header=['X-Frame-Options:', set_directive_list(config[9], ['SAMEORIGIN', '"ALLOW-FROM http://www.exampletfm.com/"', 'DENY', 'WRONG VALUE'])]),
                 EmptyBlock(add_header=['X-Powered-By:', set_directive_list(config[10], ['PHP/5.3.3', 'PHP/5.6.8', 'PHP/7.2.1', 'Django2.2', 'nginx/1.16.0', 'WRONG SERVER'])]),
                 EmptyBlock(add_header=['X-Content-Type-Options:', set_directive_list(config[11], ['nosniff', '""'])]),
                 EmptyBlock(add_header=['Server:', set_directive_list(config[12], ['apache', 'caddy', 'nginx/1.16.0'])]),
-                root='/var/lib/nginx/html/',
+                EmptyBlock(add_header=['X-XSS-Protection:', set_directive_list(config[13], ["0", "1", '"1; mode=block"'])]),
+                EmptyBlock(add_header=['Content-Security-Policy:', set_directive_list(config[14], ["\"default-src 'self'\"", "\"default-src 'none'\"", "\"default-src 'host *.google.com'\""])]),
+
+                # add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                # root='/var/lib/nginx/html/',
+                root='/tester/site/',
                 index='index.html index.htm',
                 # proxy_pass='http://juice-shop:3000',
             ),
@@ -116,6 +130,7 @@ def generate(config=generate_random_config()):
         daemon='on',  # passed in Dockerfile CMD
         error_log='/var/log/nginx/error.log warn',
     )
+    # print(nginx)
 
     # Return the generated configuration
     return nginx

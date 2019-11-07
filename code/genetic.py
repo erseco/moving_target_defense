@@ -13,7 +13,7 @@ from generate_nginx_config import *
 import click
 from pytictoc import TicToc
 
-genes = 13  # The length of each individual's genetic material
+genes = 15  # The length of each individual's genetic material
 individuals = 20  # The number of individuals in the population
 pressure = 5  # How many individuals are selected for reproduction. Must be greater than 2
 mutation_chance = 0.4  # The probability that an individual mutates

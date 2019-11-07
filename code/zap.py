@@ -28,7 +28,7 @@ def zap_test():
     # Proxy a request to the target so that ZAP has something to deal with
     print('Accessing target {}'.format(target), file=sys.stderr)
     # zap.urlopen(target)
-    zap.core.access_url(url=target, followredirects=True)
+    zap.core.access_url(url=target)
     # Give the sites tree a chance to get updated
     time.sleep(2)
 
@@ -45,13 +45,13 @@ def zap_test():
     print('Spider completed', file=sys.stderr)
     zap.spider.stop_all_scans()
 
-    print('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
+    # print('Enable all passive scanners -> ' + zap.pscan.enable_all_scanners(), file=sys.stderr)
 
-    while (int(zap.pscan.records_to_scan) > 0):
-        print('Records to passive scan : {}'.format(int(zap.pscan.records_to_scan)), file=sys.stderr)
-        time.sleep(2)
+    # while (int(zap.pscan.records_to_scan) > 0):
+    #     print('Records to passive scan : {}'.format(int(zap.pscan.records_to_scan)), file=sys.stderr)
+    #     time.sleep(2)
 
-    print('Passive Scan completed', file=sys.stderr)
+    # print('Passive Scan completed', file=sys.stderr)
 
     print('Active Scanning target {}'.format(target), file=sys.stderr)
 
