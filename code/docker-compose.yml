@@ -15,13 +15,15 @@ services:
       # - juice-shop
     volumes:
       # We link the local files to easily modify the running code for tests
-      - ./zap.py:/tester/zap.py:ro
-      - ./fitness.py:/tester/fitness.py:ro
-      - ./generate_nginx_config.py:/tester/generate_nginx_config.py:ro
-      - ./genetic.py:/tester/genetic.py:ro
-      - ./docker.py:/tester/docker.py:ro
-      - ./run.sh:/tester/run.sh:ro
+      - ./zap.py:/tester/zap.py
+      - ./fitness.py:/tester/fitness.py
+      - ./generate_nginx_config.py:/tester/generate_nginx_config.py
+      - ./genetic.py:/tester/genetic.py
+      - ./docker.py:/tester/docker.py
+      - ./run.sh:/tester/run.sh
       - ./results/:/tester/results/
+      - ./cgroup/:/sys/fs/cgroup/:rw
+
     # ports:
     #   - "80:80"
 

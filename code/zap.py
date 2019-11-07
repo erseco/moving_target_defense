@@ -25,6 +25,8 @@ def zap_test():
 
     zap = ZAPv2(apikey=apikey, proxies={'http': proxy})
 
+
+    zap.core.new_session(name="abc", overwrite=True)
     # Proxy a request to the target so that ZAP has something to deal with
     print('Accessing target {}'.format(target), file=sys.stderr)
     # zap.urlopen(target)
@@ -73,6 +75,7 @@ def zap_test():
     print("Total: %s" % len(zap.core.alerts()), file=sys.stderr)
 
     print("Stopping all scans...", file=sys.stderr)
+    alerts = len(zap.core.alerts())
     zap.ascan.stop_all_scans()
 
-    return len(zap.core.alerts())
+    return alerts

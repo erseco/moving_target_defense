@@ -32,19 +32,13 @@ def check_kill_process(pstring):
 def calculate_fitness(config):
 
     # Force kill running NGINX processes
-    try:
-        print("Killing existing NGINX processes...", file=sys.stderr)
-        time.sleep(1)
-        Popen(["pkill", "nginx"])
-        time.sleep(1)
-        check_kill_process("nginx")
-        time.sleep(1)
-    except Exception as e:
-        time.sleep(1)
+    # print("Stopping NGINX servicer...", file=sys.stderr)
+    # Popen(["service", "nginx", "stop"])
+    # time.sleep(1)
 
     nginx = generate(config)
 
-    new_file, filename = tempfile.mkstemp()
+    filename = '/etc/nginx/nginx.conf'
 
     with open(filename, 'w') as f:
         f.write(str(nginx))
@@ -59,16 +53,20 @@ def calculate_fitness(config):
     alerts = 999
 
     if p.returncode == 0:
-        p = Popen(['nginx', '-c', filename], stdout=PIPE, encoding='ascii')
+        Popen(["service", "nginx", "start"], stdout=PIPE, encoding='ascii')
 
         alerts = zap_test()
 
         # Print alerts (for debug purposes)
-        # print("Alerts:")
-        # print(alerts)
+        print("Alerts:")
+        print(alerts)
 
-        p.terminate()
+        check_kill_process("nginx")
 
-    os.unlink(filename)
+        Popen(["service", "nginx", "zap"])
+        time.sleep(2)
+
+        # os.unlink(filename)
+
 
     return alerts
