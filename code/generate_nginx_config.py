@@ -87,14 +87,14 @@ def generate(config=generate_random_config()):
     http.sections.add(
         Section(
             'server',
-            # Location(
-            #     '^~ /assets/public/assets/',
-            #     deny='all',
-            # ),
-            # Location(
-            #     '^~ /assets/assets/',
-            #     deny='all',
-            # ),
+            Location(
+                '^~ /assets/public/assets/',
+                deny='all',
+            ),
+            Location(
+                '^~ /assets/assets/',
+                deny='all',
+            ),
             Location(
                 '/form',
                 EmptyBlock(access_log=['/var/log/access.log', 'my_tracking']),
@@ -113,7 +113,7 @@ def generate(config=generate_random_config()):
                 # root='/var/lib/nginx/html/',
                 root='/tester/site/',
                 index='index.html index.htm',
-                # proxy_pass='http://juice-shop:3000',
+                proxy_pass='http://juice-shop:3000',
             ),
             server_name='www.exampletfm.com',
             listen=80,
